@@ -5,6 +5,8 @@
  * Reflects real-world Nigerian ride-hailing dispute patterns.
  */
 
+import { STATUS } from "./admin-theme";
+
 export type DisputeCategory = "fare" | "route" | "safety" | "payment" | "service" | "property" | "no_show";
 export type DisputePriority = "critical" | "high" | "medium" | "low";
 export type DisputeStatus = "new" | "in_review" | "awaiting_evidence" | "escalated" | "resolved";
@@ -113,7 +115,7 @@ export const CATEGORY_META: Record<DisputeCategory, { label: string; color: stri
   route: { label: "Route Deviation", color: "#3B82F6", icon: "↗" },
   safety: { label: "Safety Report", color: "#D4183D", icon: "!" },
   payment: { label: "Payment Issue", color: "#F97316", icon: "₦" },
-  service: { label: "Service Quality", color: "#737373", icon: "★" },
+  service: { label: "Service Quality", color: STATUS.neutral, icon: "★" },
   property: { label: "Property Damage", color: "#8B5CF6", icon: "⚠" },
   no_show: { label: "No-Show", color: "#EC4899", icon: "✕" },
 };

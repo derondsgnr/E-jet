@@ -32,7 +32,7 @@ const CATEGORY_META: Record<NotifCategory, { icon: typeof Wallet; color: string;
   earnings: { icon: Wallet, color: BRAND.green, label: "Earnings" },
   drivers:  { icon: Users,  color: STATUS.info, label: "Drivers" },
   vehicles: { icon: Car,    color: STATUS.warning, label: "Vehicles" },
-  system:   { icon: Settings2, color: "#8B8B8D", label: "System" },
+  system:   { icon: Settings2, color: STATUS.neutral, label: "System" },
 };
 
 type FilterId = "all" | NotifCategory;

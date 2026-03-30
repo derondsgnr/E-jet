@@ -163,7 +163,7 @@ function getPriorityColor(priority: string): string {
     case "critical": return STATUS.error;
     case "high": return STATUS.warning;
     case "medium": return STATUS.info;
-    default: return "#737373";
+    default: return STATUS.neutral;
   }
 }
 

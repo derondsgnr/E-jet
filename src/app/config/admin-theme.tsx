@@ -26,6 +26,7 @@ export const STATUS = {
   warning: "#F59E0B",
   error: "#D4183D",
   info: "#3B82F6",
+  neutral: "#737373", // inactive / offline / decommissioned states
 } as const;
 
 // ─── Theme type ─────────────────────────────────────────────────────────────

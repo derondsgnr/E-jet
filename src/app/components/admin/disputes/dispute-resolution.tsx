@@ -34,7 +34,7 @@ const PC: Record<string, string> = {
   critical: "#D4183D",
   high: "#F97316",
   medium: "#F59E0B",
-  low: "#737373",
+  low: STATUS.neutral,
 };
 
 const CAT_Q: Record<string, string> = {
@@ -42,7 +42,7 @@ const CAT_Q: Record<string, string> = {
   fare: "#F59E0B",
   route: "#3B82F6",
   payment: "#F97316",
-  service: "#737373",
+  service: STATUS.neutral,
   property: "#8B5CF6",
   no_show: "#EC4899",
 };
@@ -441,8 +441,8 @@ export function DisputeResolution() {
                 )}
                 {filtered.map((dispute, i) => {
                   const pc = PC[dispute.priority] || PC.low;
-                  const catColor = CAT_Q[dispute.category] || "#737373";
-                  const statColor = STATUS_Q[dispute.status] || "#737373";
+                  const catColor = CAT_Q[dispute.category] || STATUS.neutral;
+                  const statColor = STATUS_Q[dispute.status] || STATUS.neutral;
                   const sm = STATUS_META[dispute.status];
                   const isResolved = resolvedDisputes.has(dispute.id);
 
@@ -712,7 +712,7 @@ export function DisputeResolution() {
                 </span>
                 <span
                   className="px-2 py-0.5 rounded-lg shrink-0"
-                  style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 500, fontSize: "9px", letterSpacing: "-0.02em", color: CAT_Q[selected.category] || "#737373", background: `${CAT_Q[selected.category] || "#737373"}10` }}
+                  style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 500, fontSize: "9px", letterSpacing: "-0.02em", color: CAT_Q[selected.category] || STATUS.neutral, background: `${CAT_Q[selected.category] || STATUS.neutral}10` }}
                 >
                   {CATEGORY_META[selected.category].label}
                 </span>

@@ -44,7 +44,7 @@ const TAG_COLORS: Record<string, string> = {
   "review-needed": "#F97316",
   "suspended": "#D4183D",
   "abuse-risk": "#D4183D",
-  "churned": "#737373",
+  "churned": STATUS.neutral,
 };
 
 export function AdminRidersPage() {
@@ -485,7 +485,7 @@ export function AdminRidersPage() {
             />
             <div className="px-6 py-5 space-y-4">
               <div>
-                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>CREDIT AMOUNT</span>
+                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: t.textMuted, letterSpacing: "0.06em" }}>CREDIT AMOUNT</span>
                 <div className="flex items-center gap-2 h-11 px-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600, fontSize: "14px", color: BRAND.green }}>₦</span>
                   <input
@@ -498,7 +498,7 @@ export function AdminRidersPage() {
                 </div>
               </div>
               <div>
-                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>REASON</span>
+                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: t.textMuted, letterSpacing: "0.06em" }}>REASON</span>
                 <select className="w-full h-10 px-3 rounded-xl bg-transparent outline-none" style={{ border: "1px solid rgba(255,255,255,0.08)", fontFamily: "'Manrope', sans-serif", fontSize: "12px", color: "white" }}>
                   <option value="">Select reason…</option>
                   <option value="dispute_resolution">Dispute resolution</option>
@@ -541,7 +541,7 @@ export function AdminRidersPage() {
                     </span>
                   </div>
                   <div>
-                    <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>REASON</span>
+                    <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: t.textMuted, letterSpacing: "0.06em" }}>REASON</span>
                     <textarea
                       value={suspendReason}
                       onChange={e => setSuspendReason(e.target.value)}
@@ -560,7 +560,7 @@ export function AdminRidersPage() {
                     ].map(m => (
                       <div key={m.label} className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                         <span className="block" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 600, fontSize: "14px", letterSpacing: "-0.03em", color: "white" }}>{m.value}</span>
-                        <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 400, fontSize: "9px", color: "#7D7D7D" }}>{m.label}</span>
+                        <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 400, fontSize: "9px", color: t.textMuted }}>{m.label}</span>
                       </div>
                     ))}
                   </div>
@@ -676,9 +676,9 @@ function RiderDetail({
         {rider.tags.length > 0 && (
           <div className="flex items-center gap-1.5 flex-wrap">
             {rider.tags.map(tag => (
-              <span key={tag} className="inline-flex items-center gap-1 h-6 px-2 rounded-md" style={{ background: `${TAG_COLORS[tag] || "#737373"}12`, border: `1px solid ${TAG_COLORS[tag] || "#737373"}20` }}>
-                <Tag size={8} style={{ color: TAG_COLORS[tag] || "#737373" }} />
-                <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 500, fontSize: "10px", letterSpacing: "-0.02em", color: TAG_COLORS[tag] || "#737373" }}>{tag}</span>
+              <span key={tag} className="inline-flex items-center gap-1 h-6 px-2 rounded-md" style={{ background: `${TAG_COLORS[tag] || STATUS.neutral}12`, border: `1px solid ${TAG_COLORS[tag] || STATUS.neutral}20` }}>
+                <Tag size={8} style={{ color: TAG_COLORS[tag] || STATUS.neutral }} />
+                <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 500, fontSize: "10px", letterSpacing: "-0.02em", color: TAG_COLORS[tag] || STATUS.neutral }}>{tag}</span>
               </span>
             ))}
           </div>

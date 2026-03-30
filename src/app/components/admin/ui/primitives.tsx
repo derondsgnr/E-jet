@@ -257,7 +257,7 @@ function priorityColorFn(priority: string): string {
     case "critical": return STATUS.error;
     case "high": return STATUS.warning;
     case "medium": return STATUS.info;
-    default: return "#737373";
+    default: return STATUS.neutral;
   }
 }
 
@@ -269,7 +269,7 @@ export function PriorityIcon({ priority, size = 12 }: { priority: string; size?:
     case "critical": return <AlertCircle size={size} style={{ color: STATUS.error }} />;
     case "high": return <Flame size={size} style={{ color: STATUS.warning }} />;
     case "medium": return <Timer size={size} style={{ color: STATUS.info }} />;
-    default: return <Info size={size} style={{ color: "#737373" }} />;
+    default: return <Info size={size} style={{ color: STATUS.neutral }} />;
   }
 }
 
@@ -282,7 +282,7 @@ export function FeedIcon({ type, size = 11 }: { type: string; size?: number }) {
     case "driver_online": return <Zap size={size} style={{ color: STATUS.info }} />;
     case "surge_activated": return <TrendingUp size={size} style={{ color: STATUS.warning }} />;
     case "payment_failed": return <XCircle size={size} style={{ color: STATUS.error }} />;
-    case "ride_cancelled": return <XCircle size={size} style={{ color: "#737373" }} />;
+    case "ride_cancelled": return <XCircle size={size} style={{ color: STATUS.neutral }} />;
     case "dispute_opened": return <Scale size={size} style={{ color: STATUS.warning }} />;
     case "driver_verified": return <UserCheck size={size} style={{ color: BRAND.green }} />;
     // Hotel events
@@ -293,7 +293,7 @@ export function FeedIcon({ type, size = 11 }: { type: string; size?: number }) {
     case "fleet_offline": return <Car size={size} style={{ color: "#F59E0B" }} />;
     case "fleet_payout": return <Wallet size={size} style={{ color: "#F59E0B" }} />;
     case "fleet_compliance": return <Shield size={size} style={{ color: "#F59E0B" }} />;
-    default: return <CircleDot size={size} style={{ color: "#737373" }} />;
+    default: return <CircleDot size={size} style={{ color: STATUS.neutral }} />;
   }
 }
 
