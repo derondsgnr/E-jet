@@ -40,12 +40,13 @@ const PLAY_STORE_URL = "#play-store"; // Replace with live Play Store link
 
 // ─── Images ─────────────────────────────────────────────────────────────────
 const IMG_HERO    = "https://images.unsplash.com/photo-1574612357719-5dd0a272afe2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMYWdvcyUyME5pZ2VyaWElMjBhZXJpYWwlMjBjaXR5c2NhcGUlMjBuaWdodCUyMGxpZ2h0c3xlbnwxfHx8fDE3NzI5MzE3OTl8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_ROAD    = "https://images.unsplash.com/photo-1767681774518-dc28fec12c5e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjaXR5JTIwcm9hZCUyMGhpZ2h3YXklMjBzdW5zZXQlMjBnb2xkZW58ZW58MXx8fHwxNzcyOTMxODA2fDA&ixlib=rb-4.1.0&q=80&w=1080";
+const IMG_FLEET   = "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"; // fleet of cars parked — operations scale
+const IMG_ROAD    = "https://images.unsplash.com/photo-1470224114660-3f6686c562eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"; // highway at dusk — used in image constellation
 const IMG_CHARGE  = "https://images.unsplash.com/photo-1768310465625-5824a01fff4c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbGVjdHJpYyUyMGNhciUyMGNoYXJnaW5nJTIwc3RhdGlvbiUyMG1vZGVybnxlbnwxfHx8fDE3NzI4NzU5OTJ8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_STREET  = "https://images.unsplash.com/photo-1658402834638-c6f65944b551?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxMYWdvcyUyMHN0cmVldCUyMHZpYnJhbnQlMjB1cmJhbiUyMGxpZmV8ZW58MXx8fHwxNzcyOTMxODAxfDA&ixlib=rb-4.1.0&q=80&w=1080";
+const IMG_STREET  = "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"; // Lagos skyline / modern Nigeria cityscape
 const IMG_MAN     = "https://images.unsplash.com/photo-1550051414-003c9007794c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwbWFuJTIwc21pbGluZyUyMHByb2Zlc3Npb25hbCUyMGhlYWRzaG90fGVufDF8fHx8MTc3MjkzMTgwNXww&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_WOMAN   = "https://images.unsplash.com/photo-1772714601002-fbb0fea8a911?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwd29tYW4lMjBwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMG1vZGVybnxlbnwxfHx8fDE3NzI5MzE4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080";
-const IMG_INTERIOR = "https://images.unsplash.com/photo-1760553121156-56d1c9d3df15?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjYXIlMjBpbnRlcmlvciUyMGRhc2hib2FyZCUyMG5pZ2h0fGVufDF8fHx8MTc3MjkzMTgwMXww&ixlib=rb-4.1.0&q=80&w=1080";
+const IMG_HOTEL   = "https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"; // luxury hotel entrance with car arrival
+const IMG_INTERIOR = "https://images.unsplash.com/photo-1503376780353-7e6692767b70?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080"; // premium car interior — leather, ambient lighting
 
 // ─── Typography ─────────────────────────────────────────────────────────────
 const H  = { fontFamily: "var(--font-heading)", letterSpacing: "-0.03em", fontWeight: 600, lineHeight: 1.1 } as const;
@@ -474,15 +475,17 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
       ══════════════════════════════════════════════════════════════════ */}
       <section className="px-6 md:px-16 py-8 max-w-6xl mx-auto">
         <Reveal>
-          <div className="grid md:grid-cols-5 gap-6">
-            <div className="md:col-span-3 rounded-3xl overflow-hidden" style={{ height: 480 }}>
-              <img src={IMG_STREET} alt="Nigeria streets" className="w-full h-full object-cover" />
+          <div className="grid md:grid-cols-5 gap-4" style={{ height: 520 }}>
+            {/* Left — tall single image */}
+            <div className="md:col-span-3 rounded-3xl overflow-hidden h-full">
+              <img src={IMG_STREET} alt="Nigeria city" className="w-full h-full object-cover" />
             </div>
-            <div className="md:col-span-2 grid grid-rows-2 gap-6">
-              <div className="rounded-3xl overflow-hidden">
-                <img src={IMG_INTERIOR} alt="Premium ride interior" className="w-full h-full object-cover" />
+            {/* Right — two stacked images, each half height */}
+            <div className="md:col-span-2 flex flex-col gap-4 h-full">
+              <div className="rounded-3xl overflow-hidden flex-1">
+                <img src={IMG_INTERIOR} alt="Premium car interior" className="w-full h-full object-cover" />
               </div>
-              <div className="rounded-3xl overflow-hidden">
+              <div className="rounded-3xl overflow-hidden flex-1">
                 <img src={IMG_ROAD} alt="Nigerian road" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -634,17 +637,17 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
+          <div className="grid md:grid-cols-2 gap-6 mt-12 items-stretch">
             {[
               {
-                img: IMG_WOMAN,
+                img: IMG_HOTEL,
                 label: "Hotel partners",
                 icon: Building2,
                 title: "Premium transport for your guests, on demand.",
                 body: "Branded booking, seamless billing, VIP coordination — integrated into how you already work.",
               },
               {
-                img: IMG_ROAD,
+                img: IMG_FLEET,
                 label: "Fleet owners",
                 icon: Car,
                 title: "Real-time vehicle tracking. Revenue analytics. One dashboard.",
@@ -653,8 +656,8 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
             ].map(card => {
               const Icon = card.icon;
               return (
-                <Reveal key={card.label}>
-                  <div className="rounded-3xl overflow-hidden group" style={{ border: "1px solid rgba(0,0,0,0.06)" }}>
+                <Reveal key={card.label} className="h-full">
+                  <div className="rounded-3xl overflow-hidden group flex flex-col h-full" style={{ border: "1px solid rgba(0,0,0,0.06)" }}>
                     <div className="relative overflow-hidden" style={{ height: 280 }}>
                       <img
                         src={card.img}
@@ -672,9 +675,9 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
                         <span style={{ ...BM, fontSize: "12px", color: "#FFFFFF" }}>{card.label}</span>
                       </div>
                     </div>
-                    <div className="p-6 bg-white">
+                    <div className="p-6 bg-white flex flex-col flex-1">
                       <h3 style={{ ...H, fontSize: "18px", color: "#0B0B0D", marginBottom: 8 }}>{card.title}</h3>
-                      <p style={{ ...B, fontSize: "14px", color: "#6E6E70", marginBottom: 16 }}>{card.body}</p>
+                      <p style={{ ...B, fontSize: "14px", color: "#6E6E70", marginBottom: 16, flex: 1 }}>{card.body}</p>
                       <a
                         href={`mailto:${CONTACT_EMAIL}`}
                         className="flex items-center gap-1.5 group/link"
