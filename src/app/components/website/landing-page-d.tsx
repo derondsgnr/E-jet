@@ -15,11 +15,12 @@
  * No fake stats. No competitor naming. No Lagos-only framing.
  */
 
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+import { motion, useInView, useScroll, useTransform, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   ArrowUpRight,
+  ChevronDown,
   Shield,
   Leaf,
   Zap,
@@ -142,6 +143,7 @@ export function LandingPageD({ onGetStarted, onDriveWithUs, onHotelPartner, onFl
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroImgScale = useTransform(heroScroll, [0, 1], [1, 1.08]);
   const heroImgY     = useTransform(heroScroll, [0, 1], ["0%", "12%"]);
+  const [businessOpen, setBusinessOpen] = useState(false);
 
   return (
     <div className="w-full" style={{ background: "#FAFAFA" }}>
@@ -162,16 +164,91 @@ export function LandingPageD({ onGetStarted, onDriveWithUs, onHotelPartner, onFl
         <JetLogo variant="full" mode="light" height={26} />
 
         <div className="hidden md:flex items-center gap-8">
-          {["Ride", "Drive", "Business"].map(label => (
+          <button
+            style={{ ...BM, fontSize: "14px", color: "#979797" }}
+            onClick={onGetStarted}
+            className="transition-colors hover:text-white"
+          >
+            Ride
+          </button>
+          <button
+            style={{ ...BM, fontSize: "14px", color: "#979797" }}
+            onClick={onDriveWithUs}
+            className="transition-colors hover:text-white"
+          >
+            Drive
+          </button>
+
+          {/* Business dropdown */}
+          <div className="relative">
             <button
-              key={label}
-              style={{ ...BM, fontSize: "14px", color: "#979797" }}
-              onClick={label === "Drive" ? onDriveWithUs : onGetStarted}
-              className="transition-colors hover:text-white"
+              style={{ ...BM, fontSize: "14px", color: businessOpen ? "#FFFFFF" : "#979797" }}
+              onClick={() => setBusinessOpen(o => !o)}
+              onBlur={() => setTimeout(() => setBusinessOpen(false), 150)}
+              className="transition-colors hover:text-white flex items-center gap-1"
             >
-              {label}
+              Business
+              <motion.span
+                animate={{ rotate: businessOpen ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                style={{ display: "flex" }}
+              >
+                <ChevronDown size={13} />
+              </motion.span>
             </button>
-          ))}
+
+            <AnimatePresence>
+              {businessOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 4, scale: 0.97 }}
+                  transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                  className="absolute top-full mt-2 right-0 rounded-2xl overflow-hidden"
+                  style={{
+                    width: 220,
+                    background: "rgba(18,18,22,0.96)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    boxShadow: "0 16px 40px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <button
+                    onClick={() => { setBusinessOpen(false); onHotelPartner?.(); }}
+                    className="w-full flex items-center gap-3 px-4 py-3.5 transition-colors text-left"
+                    style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+                    onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ background: `${BRAND_COLORS.green}14` }}>
+                      <Building2 size={13} style={{ color: BRAND_COLORS.green }} />
+                    </div>
+                    <div>
+                      <p style={{ ...BM, fontSize: "13px", color: "#FFFFFF" }}>Hotel partners</p>
+                      <p style={{ ...B, fontSize: "11px", color: "#636363" }}>Guest transport solutions</p>
+                    </div>
+                  </button>
+                  <button
+                    onClick={() => { setBusinessOpen(false); onFleetOwner?.(); }}
+                    className="w-full flex items-center gap-3 px-4 py-3.5 transition-colors text-left"
+                    onMouseEnter={e => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
+                    onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
+                  >
+                    <div className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
+                      style={{ background: `${BRAND_COLORS.green}14` }}>
+                      <Car size={13} style={{ color: BRAND_COLORS.green }} />
+                    </div>
+                    <div>
+                      <p style={{ ...BM, fontSize: "13px", color: "#FFFFFF" }}>Fleet owners</p>
+                      <p style={{ ...B, fontSize: "11px", color: "#636363" }}>Manage your vehicles</p>
+                    </div>
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
 
         <motion.button
