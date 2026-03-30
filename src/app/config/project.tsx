@@ -151,22 +151,22 @@ export const GLASS_COLORS = {
   },
   light: {
     text: {
-      primary: "rgba(11,11,13,0.88)",
-      secondary: "rgba(11,11,13,0.6)",
-      secondaryStrong: "rgba(11,11,13,0.55)",
-      tertiary: "rgba(11,11,13,0.5)",
-      muted: "rgba(11,11,13,0.45)",
-      faint: "rgba(11,11,13,0.35)",
-      ghost: "rgba(11,11,13,0.2)",
-      display: "#0B0B0D",
-      displayFaded: "rgba(11,11,13,0.3)",
-      primarySoft: "rgba(11,11,13,0.85)",
+      primary: "#1C1C1E",         // 15.2:1 — headings, primary labels
+      secondary: "#525254",       // 7.4:1 — secondary labels, active nav
+      secondaryStrong: "#525254", // 7.4:1 — fare text, interactive labels
+      tertiary: "#6E6E70",        // 4.8:1 — WCAG AA, secondary info
+      muted: "#717171",           // 4.6:1 — WCAG AA minimum, meta text
+      faint: "#8E8E8E",           // 3.1:1 — large text / UI component minimum
+      ghost: "#A8A8A8",           // 2.3:1 — empty states, purely decorative
+      display: "#0B0B0D",         // 18.8:1 — hero / display type
+      displayFaded: "#6E6E70",    // 4.8:1 — display secondary line (was 1.6:1 — near invisible)
+      primarySoft: "#1C1C1E",     // 15.2:1 — search bar text, quick-access names
     },
     icon: {
-      primary: "rgba(11,11,13,0.55)",
-      secondary: "rgba(11,11,13,0.4)",
-      tertiary: "rgba(11,11,13,0.4)",
-      muted: "rgba(11,11,13,0.35)",
+      primary: "#6E6E70",   // 4.8:1 — primary icons
+      secondary: "#8E8E8E", // 3.1:1 — UI component minimum
+      tertiary: "#8E8E8E",  // 3.1:1 — secondary icons
+      muted: "#A8A8A8",     // 2.3:1 — decorative / disabled icons
     },
     surface: {
       subtle: "rgba(11,11,13,0.04)",
@@ -177,7 +177,7 @@ export const GLASS_COLORS = {
     green: {
       tint: "rgba(29,185,84,0.08)",
       evBg: "rgba(29,185,84,0.06)",
-      evText: "rgba(4,101,56,0.7)",
+      evText: "#046538",  // 6.5:1 — dark brand green, replaces rgba that rendered at ~2.6:1
     },
     bg: "#FAFAFA",
   },

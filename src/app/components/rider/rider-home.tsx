@@ -132,7 +132,7 @@ export function RiderHome({
             >
               <MoreHorizontal
                 className="w-4 h-4"
-                style={{ color: d ? "rgba(255,255,255,0.5)" : "rgba(11,11,13,0.45)" }}
+                style={{ color: d ? "rgba(255,255,255,0.5)" : "#8E8E8E" }}
               />
             </motion.button>
             <motion.button
@@ -294,7 +294,7 @@ export function RiderHome({
                   <span
                     style={{
                       ...RT.meta,
-                      color: d ? "rgba(29,185,84,0.6)" : "rgba(29,185,84,0.7)",
+                      color: d ? "rgba(29,185,84,0.6)" : "#046538",
                       position: "relative",
                       top: "-1px",
                     }}
