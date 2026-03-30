@@ -41,7 +41,7 @@ type VehicleType = "ev" | "gas";
 const DRIVER_STATUS_META: Record<DriverStatus, { label: string; color: string }> = {
   active: { label: "Online", color: BRAND.green },
   on_trip: { label: "On Trip", color: STATUS.info },
-  offline: { label: "Offline", color: "#737373" },
+  offline: { label: "Offline", color: STATUS.neutral },
   suspended: { label: "Suspended", color: STATUS.error },
   pending_review: { label: "Pending", color: STATUS.warning },
 };

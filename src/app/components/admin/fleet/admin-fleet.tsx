@@ -46,7 +46,7 @@ const STAGE_META: Record<FleetStage, { label: string; color: string }> = {
 const DRIVER_STATUS: Record<DriverStatus, { label: string; color: string }> = {
   active: { label: "Online", color: BRAND.green },
   on_trip: { label: "On Trip", color: STATUS.info },
-  offline: { label: "Offline", color: "#737373" },
+  offline: { label: "Offline", color: STATUS.neutral },
   suspended: { label: "Suspended", color: STATUS.error },
   pending: { label: "Pending", color: STATUS.warning },
 };
@@ -55,7 +55,7 @@ const VEHICLE_STATUS: Record<VehicleStatus, { label: string; color: string }> = 
   active: { label: "Active", color: BRAND.green },
   maintenance: { label: "Maintenance", color: STATUS.warning },
   inspection_due: { label: "Inspection Due", color: STATUS.error },
-  decommissioned: { label: "Decommissioned", color: "#737373" },
+  decommissioned: { label: "Decommissioned", color: STATUS.neutral },
 };
 
 const PAYOUT_STATUS: Record<PayoutStatus, { label: string; color: string }> = {

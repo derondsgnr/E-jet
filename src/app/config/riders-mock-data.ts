@@ -5,6 +5,8 @@
  * Reflects real-world Nigerian rider demographics and usage patterns.
  */
 
+import { STATUS } from "./admin-theme";
+
 export type RiderStatus = "active" | "suspended" | "flagged" | "new" | "churned";
 export type PaymentType = "card" | "wallet" | "cash" | "corporate";
 
@@ -62,7 +64,7 @@ export const RIDER_STATUS_META: Record<RiderStatus, { label: string; color: stri
   suspended: { label: "Suspended", color: "#D4183D", dotPulse: false },
   flagged: { label: "Flagged", color: "#F59E0B", dotPulse: true },
   new: { label: "New", color: "#3B82F6", dotPulse: false },
-  churned: { label: "Churned", color: "#737373", dotPulse: false },
+  churned: { label: "Churned", color: STATUS.neutral, dotPulse: false },
 };
 
 export const RIDER_KPI = {

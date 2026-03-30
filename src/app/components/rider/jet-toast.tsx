@@ -52,7 +52,7 @@ const variantColor = (variant: ToastVariant, d: boolean) => {
     case "success": return BRAND_COLORS.green;
     case "error":   return BRAND_COLORS.error;
     case "warning": return BRAND_COLORS.warning;
-    case "info":    return d ? "rgba(255,255,255,0.5)" : "rgba(11,11,13,0.5)";
+    case "info":    return d ? "rgba(255,255,255,0.5)" : "#6E6E70";
   }
 };
 

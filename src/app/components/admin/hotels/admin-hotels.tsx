@@ -44,13 +44,13 @@ const STAGE_META: Record<HotelStage, { label: string; color: string }> = {
 const TIER_META: Record<HotelTier, { label: string; color: string }> = {
   enterprise: { label: "Enterprise", color: "#8B5CF6" },
   premium: { label: "Premium", color: BRAND.green },
-  standard: { label: "Standard", color: "#737373" },
+  standard: { label: "Standard", color: STATUS.neutral },
 };
 
 const INT_META: Record<IntegrationStatus, { label: string; color: string; icon: typeof Wifi }> = {
   live: { label: "Live", color: BRAND.green, icon: Wifi },
   testing: { label: "Testing", color: STATUS.info, icon: Activity },
-  pending: { label: "Pending", color: "#737373", icon: Clock },
+  pending: { label: "Pending", color: STATUS.neutral, icon: Clock },
   error: { label: "Error", color: STATUS.error, icon: WifiOff },
 };
 

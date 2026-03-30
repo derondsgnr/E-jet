@@ -40,7 +40,7 @@ const TXN_TYPE_META: Record<TxnType, { label: string; color: string }> = {
   commission: { label: "Commission", color: STATUS.info },
   payout: { label: "Payout", color: "#8B5CF6" },
   refund: { label: "Refund", color: STATUS.warning },
-  processing_fee: { label: "Processing", color: "#737373" },
+  processing_fee: { label: "Processing", color: STATUS.neutral },
   hotel_invoice: { label: "Hotel Invoice", color: "#F59E0B" },
   fleet_settlement: { label: "Fleet Settlement", color: "#06B6D4" },
 };
