@@ -12,9 +12,9 @@
  */
 
 import svgPaths from "../../../imports/svg-9oy2kbm1fd";
-import imgJetLogoIcon from "figma:asset/7dc8f36e08920bdc46a6fffcaeb8bd5df5addb8b.png";
-import imgJetLogo from "figma:asset/7c193654ac3abd16673fc92255e5e60a8a6fd1cf.png";
-import imgJetLogoWhite from "figma:asset/23458c6351127b3aa839838836df8e464e79e3f9.png";
+// import imgJetLogoIcon from "figma:asset/7dc8f36e08920bdc46a6fffcaeb8bd5df5addb8b.png";
+// import imgJetLogo from "figma:asset/7c193654ac3abd16673fc92255e5e60a8a6fd1cf.png";
+// import imgJetLogoWhite from "figma:asset/23458c6351127b3aa839838836df8e464e79e3f9.png";
 
 interface JetLogoProps {
   variant?: "full" | "icon" | "wordmark-png";
@@ -32,24 +32,27 @@ export function JetLogo({
 }: JetLogoProps) {
   if (variant === "icon") {
     return (
-      <img
-        src={imgJetLogoIcon}
-        alt="Jet"
-        className={`object-contain ${className}`}
-        style={{ height }}
-      />
+      <div></div>
+
+      // <img
+      //   src={imgJetLogoIcon}
+      //   alt="Jet"
+      //   className={`object-contain ${className}`}
+      //   style={{ height }}
+      // />
     );
   }
 
   if (variant === "wordmark-png") {
-    const src = mode === "light" ? imgJetLogoWhite : imgJetLogo;
+    // const src = mode === "light" ? imgJetLogoWhite : imgJetLogo;
     return (
-      <img
-        src={src}
-        alt="Jet"
-        className={`object-contain ${className}`}
-        style={{ height }}
-      />
+      <div></div>
+      // <img
+      //   src={src}
+      //   alt="Jet"
+      //   className={`object-contain ${className}`}
+      //   style={{ height }}
+      // />
     );
   }
 
