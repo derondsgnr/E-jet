@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { Plus, X, Pencil, ArrowRight } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY } from "../config/admin-theme";
 
 const PRE_SUGGESTED_ZONES = [
   "Lagos Island",
@@ -23,7 +23,7 @@ interface Zone {
   name: string;
 }
 
-function ZonesInner() {
+export function AdminOnboardingZones() {
   const navigate = useNavigate();
   const { t, theme } = useAdminTheme();
   const [zones, setZones] = useState<Zone[]>([]);
@@ -317,7 +317,7 @@ function ZonesInner() {
                 cursor: canContinue ? "pointer" : "not-allowed",
                 minHeight: 44,
               }}
-              onClick={() => canContinue && navigate("/dashboard-empty")}
+              onClick={() => canContinue && navigate("/admin/dashboard-empty")}
               title={!canContinue ? "Add at least one zone to continue" : ""}
             >
               <span
@@ -336,13 +336,5 @@ function ZonesInner() {
         </div>
       </div>
     </div>
-  );
-}
-
-export function AdminOnboardingZones() {
-  return (
-    <AdminThemeProvider>
-      <ZonesInner />
-    </AdminThemeProvider>
   );
 }

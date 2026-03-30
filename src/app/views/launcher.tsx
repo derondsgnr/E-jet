@@ -20,7 +20,6 @@ import {
   TrendingUp,
   Building2,
   ShieldCheck,
-  FileText,
 } from "lucide-react";
 import { BRAND_COLORS } from "../config/brand";
 import { JetLogo } from "../components/brand/jet-logo";
@@ -146,7 +145,7 @@ export function Launcher() {
               fontWeight: 400,
               letterSpacing: "-0.02em",
               lineHeight: "1.5",
-              color: "rgba(255,255,255,0.45)",
+              color: "#797979",
               marginTop: "4px",
               textAlign: "center",
             }}
@@ -169,7 +168,7 @@ export function Launcher() {
               fontWeight: 500,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
+              color: "#7D7D7D",
             }}
           >
             Mobile apps
@@ -222,7 +221,7 @@ export function Launcher() {
                           fontSize: "13px",
                           fontWeight: 400,
                           letterSpacing: "-0.02em",
-                          color: "rgba(255,255,255,0.4)",
+                          color: "#7D7D7D",
                         }}
                       >
                         {app.description}
@@ -270,14 +269,14 @@ export function Launcher() {
                         fontSize: "14px",
                         fontWeight: 600,
                         letterSpacing: "-0.02em",
-                        color: "rgba(255,255,255,0.7)",
+                        color: "#B5B5B5",
                       }}
                     >
                       Dashboard
                     </span>
                     <ArrowRight
                       className="w-4 h-4"
-                      style={{ color: "rgba(255,255,255,0.4)" }}
+                      style={{ color: "#7D7D7D" }}
                     />
                   </motion.button>
                 </div>
@@ -300,7 +299,7 @@ export function Launcher() {
               fontWeight: 500,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
+              color: "#7D7D7D",
             }}
           >
             Web surfaces
@@ -351,7 +350,7 @@ export function Launcher() {
                     fontSize: "12px",
                     fontWeight: 400,
                     letterSpacing: "-0.02em",
-                    color: "rgba(255,255,255,0.35)",
+                    color: "#7D7D7D",
                     marginTop: "2px",
                   }}
                 >
@@ -365,7 +364,7 @@ export function Launcher() {
                       fontFamily: "var(--font-body)",
                       fontSize: "10px",
                       fontWeight: 500,
-                      color: "rgba(255,255,255,0.35)",
+                      color: "#7D7D7D",
                     }}
                   >
                     Soon
@@ -391,7 +390,7 @@ export function Launcher() {
         >
           <Zap
             className="w-3.5 h-3.5"
-            style={{ color: "rgba(255,255,255,0.3)" }}
+            style={{ color: "#7D7D7D" }}
           />
           <span
             style={{
@@ -399,39 +398,10 @@ export function Launcher() {
               fontSize: "13px",
               fontWeight: 500,
               letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.35)",
+              color: "#7D7D7D",
             }}
           >
             Driver verification flow
-          </span>
-        </motion.button>
-
-        <motion.button
-          className="px-4 py-2.5 rounded-xl flex items-center gap-2 mt-2"
-          style={{
-            background: `${BRAND_COLORS.green}08`,
-            border: `1px solid ${BRAND_COLORS.green}20`,
-          }}
-          onClick={() => navigate("/briefing")}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.75 }}
-          whileTap={{ scale: 0.97 }}
-        >
-          <FileText
-            className="w-3.5 h-3.5"
-            style={{ color: BRAND_COLORS.green }}
-          />
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "13px",
-              fontWeight: 500,
-              letterSpacing: "-0.02em",
-              color: `${BRAND_COLORS.green}aa`,
-            }}
-          >
-            Admin briefing
           </span>
         </motion.button>
 
@@ -457,7 +427,7 @@ export function Launcher() {
               fontSize: "13px",
               fontWeight: 500,
               letterSpacing: "-0.02em",
-              color: "rgba(139,92,246,0.7)",
+              color: "#8B5CF6",
             }}
           >
             Guest tracking (SMS link)
@@ -471,7 +441,7 @@ export function Launcher() {
             fontFamily: "var(--font-body)",
             fontSize: "12px",
             fontWeight: 400,
-            color: "rgba(255,255,255,0.2)",
+            color: "#5D5D5D",
             textAlign: "center",
           }}
           initial={{ opacity: 0 }}

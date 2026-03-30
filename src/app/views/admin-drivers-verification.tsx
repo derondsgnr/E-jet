@@ -10,7 +10,7 @@ import {
   Users, Copy, CheckCircle2, XCircle, ArrowLeft, AlertCircle,
   FileText, Shield, Car, Clock
 } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
 import { AdminDrawer } from "../components/admin/ui/surfaces";
 import { AdminModal, ModalHeader, ModalFooter, SurfaceButton } from "../components/admin/ui/surfaces";
 
@@ -61,7 +61,7 @@ const STAGES = [
   { id: "approved", label: "APPROVED" },
 ];
 
-function DriversVerificationInner() {
+export function AdminDriversVerification() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
   const [drivers] = useState<Driver[]>(MOCK_DRIVERS);
@@ -83,7 +83,7 @@ function DriversVerificationInner() {
           style={{ borderBottom: `1px solid ${t.borderSubtle}` }}
         >
           <button
-            onClick={() => navigate("/dashboard-empty?state=B")}
+            onClick={() => navigate("/admin/dashboard-empty?state=B")}
             className="p-1.5 rounded-lg hover:bg-opacity-80"
             style={{ background: t.surfaceHover }}
           >
@@ -478,7 +478,7 @@ function DriversVerificationInner() {
             variant="primary"
             onClick={() => {
               setShowApproveModal(false);
-              navigate("/dashboard-empty?state=C");
+              navigate("/admin/dashboard-empty?state=C");
             }}
           />
         </ModalFooter>
@@ -601,10 +601,3 @@ function DocRow({ label, verified, meta, action }: { label: string; verified: bo
   );
 }
 
-export function AdminDriversVerification() {
-  return (
-    <AdminThemeProvider>
-      <DriversVerificationInner />
-    </AdminThemeProvider>
-  );
-}

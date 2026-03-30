@@ -79,7 +79,7 @@ interface RiderHomeCProps {
   onSavedPlacesTap?: () => void;
 }
 
-export function RiderHomeC({
+export function RiderHome({
   colorMode = "dark",
   isNewUser = false,
   onSearchTap,
@@ -495,7 +495,7 @@ export function RiderHomeC({
                             {ride.type === "EV" && (
                               <>
                                 <span style={{ ...RT.meta, color: c.text.faint }}>·</span>
-                                <span className="flex items-center gap-0.5" style={{ color: "rgba(29,185,84,0.6)" }}>
+                                <span className="flex items-center gap-0.5" style={{ color: "#1DB954" }}>
                                   <Zap className="w-3 h-3" />
                                   <span style={{ ...RT.badge }}>EV</span>
                                 </span>

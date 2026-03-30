@@ -27,7 +27,7 @@ interface OnboardingCProps {
   onComplete?: () => void;
 }
 
-export function OnboardingC({ colorMode, onComplete }: OnboardingCProps) {
+export function RiderOnboardingFlow({ colorMode, onComplete }: OnboardingCProps) {
   const flow = useOnboardingFlow();
   const c = GLASS_COLORS[colorMode];
   const isLight = colorMode === "light";

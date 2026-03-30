@@ -8,18 +8,18 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { Sun, Moon, User } from "lucide-react";
+
 import { MOTION, GLASS_COLORS, GLASS_TYPE, type GlassColorMode } from "../config/project";
 import { BottomNav, type RiderTab } from "../components/rider/bottom-nav";
 import { ActiveTripBanner } from "../components/rider/active-trip-banner";
-import { RiderHomeC } from "../components/rider/rider-home-c";
-import { BookingFlowB } from "../components/rider/booking-flow-b";
+import { RiderHome } from "../components/rider/rider-home";
+import { BookingFlow } from "../components/rider/booking-flow";
 import { RiderActivityScreen } from "../components/rider/activity-screen";
 import { RiderWalletScreen } from "../components/rider/wallet-screen";
 import { RiderAccountScreen } from "../components/rider/account-screen";
-import { DestinationSearchC } from "../components/rider/destination-search-c";
+import { DestinationSearch } from "../components/rider/destination-search";
 import { SavedPlacesScreen } from "../components/rider/saved-places-screen";
-import { ScheduledRidesB } from "../components/rider/scheduled-rides-b";
+import { ScheduledRides } from "../components/rider/scheduled-rides";
 import {
   RiderHomeSkeleton,
   ActivitySkeleton,
@@ -29,13 +29,13 @@ import {
 type RiderFlowState = "tabs" | "destination" | "booking";
 
 export function RiderShell() {
-  const [colorMode, setColorMode] = useState<GlassColorMode>("dark");
+  const [colorMode, setColorMode] = useState<GlassColorMode>("dark"); // TODO: persist via localStorage or system preference
   const [tab, setTab] = useState<RiderTab>("home");
-  const [activeTrip, setActiveTrip] = useState(false);
+  const [activeTrip] = useState(false); // TODO: derive from active trip context/API
   const [flowState, setFlowState] = useState<RiderFlowState>("tabs");
   const [showSavedPlaces, setShowSavedPlaces] = useState(false);
   const [showScheduled, setShowScheduled] = useState(false);
-  const [isNewUser, setIsNewUser] = useState(false);
+  const [isNewUser] = useState(false); // TODO: derive from auth/profile — true if rider has no completed rides
   const [tabLoading, setTabLoading] = useState(false);
   const c = GLASS_COLORS[colorMode];
   const navigate = useNavigate();
@@ -114,7 +114,7 @@ export function RiderShell() {
               exit={{ opacity: 0, y: 20 }}
               transition={MOTION.emphasis}
             >
-              <ScheduledRidesB
+              <ScheduledRides
                 colorMode={colorMode}
                 onBack={() => setShowScheduled(false)}
                 onTrackRide={() => {
@@ -132,7 +132,7 @@ export function RiderShell() {
               exit={{ opacity: 0, y: 20 }}
               transition={MOTION.emphasis}
             >
-              <DestinationSearchC
+              <DestinationSearch
                 colorMode={colorMode}
                 onBack={closeFlow}
                 onSelect={() => handleDestinationSelect()}
@@ -147,7 +147,7 @@ export function RiderShell() {
               exit={{ opacity: 0, y: 20 }}
               transition={MOTION.emphasis}
             >
-              <BookingFlowB
+              <BookingFlow
                 colorMode={colorMode}
                 onBack={closeFlow}
                 onComplete={handleBookingComplete}
@@ -176,7 +176,7 @@ export function RiderShell() {
               ) : (
                 <>
               {tab === "home" && (
-                <RiderHomeC
+                <RiderHome
                   colorMode={colorMode}
                   isNewUser={isNewUser}
                   onSearchTap={openDestination}
@@ -244,84 +244,6 @@ export function RiderShell() {
         )}
       </AnimatePresence>
 
-      {/* ── Color mode toggle (design review only) ── */}
-      <motion.button
-        className="fixed top-0 left-5 z-[55] flex items-center gap-2 px-3 py-2 rounded-full"
-        style={{
-          marginTop: "calc(env(safe-area-inset-top, 12px) + 12px)",
-          background: c.surface.raised,
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          border: `1px solid ${c.surface.hover}`,
-        }}
-        onClick={() => setColorMode(colorMode === "dark" ? "light" : "dark")}
-        initial={{ opacity: 0, x: -12 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ ...MOTION.emphasis, delay: 0.5 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {colorMode === "dark" ? (
-          <Sun className="w-4 h-4" style={{ color: c.text.tertiary }} />
-        ) : (
-          <Moon className="w-4 h-4" style={{ color: c.text.tertiary }} />
-        )}
-        <span style={{ ...GLASS_TYPE.caption, color: c.text.tertiary }}>
-          {colorMode === "dark" ? "Light" : "Dark"}
-        </span>
-      </motion.button>
-
-      {/* ── Active trip toggle (demo control) ── */}
-      {!showBooking && (
-        <motion.button
-          className="fixed top-0 right-5 z-[55] flex items-center gap-2 px-3 py-2 rounded-full"
-          style={{
-            marginTop: "calc(env(safe-area-inset-top, 12px) + 12px)",
-            background: activeTrip ? "rgba(29,185,84,0.15)" : c.surface.raised,
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: `1px solid ${activeTrip ? "rgba(29,185,84,0.3)" : c.surface.hover}`,
-          }}
-          onClick={() => setActiveTrip(!activeTrip)}
-          initial={{ opacity: 0, x: 12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ...MOTION.emphasis, delay: 0.6 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <span style={{
-            ...GLASS_TYPE.caption,
-            color: activeTrip ? "#1DB954" : c.text.tertiary,
-          }}>
-            {activeTrip ? "Trip ON" : "Trip OFF"}
-          </span>
-        </motion.button>
-      )}
-
-      {/* ── New user toggle (demo control) ── */}
-      {!showBooking && (
-        <motion.button
-          className="fixed top-0 right-20 z-[55] flex items-center gap-2 px-3 py-2 rounded-full"
-          style={{
-            marginTop: "calc(env(safe-area-inset-top, 12px) + 12px)",
-            background: isNewUser ? "rgba(29,185,84,0.15)" : c.surface.raised,
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
-            border: `1px solid ${isNewUser ? "rgba(29,185,84,0.3)" : c.surface.hover}`,
-          }}
-          onClick={() => setIsNewUser(!isNewUser)}
-          initial={{ opacity: 0, x: 12 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ ...MOTION.emphasis, delay: 0.6 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <User className="w-4 h-4" style={{ color: isNewUser ? "#1DB954" : c.text.tertiary }} />
-          <span style={{
-            ...GLASS_TYPE.caption,
-            color: isNewUser ? "#1DB954" : c.text.tertiary,
-          }}>
-            {isNewUser ? "New User ON" : "New User OFF"}
-          </span>
-        </motion.button>
-      )}
     </div>
   );
 }

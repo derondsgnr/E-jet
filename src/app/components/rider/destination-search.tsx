@@ -71,7 +71,7 @@ interface DestinationSearchCProps {
   onSelect?: (place: Place) => void;
 }
 
-export function DestinationSearchC({
+export function DestinationSearch({
   colorMode = "dark",
   onBack,
   onSelect,

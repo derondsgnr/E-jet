@@ -14,7 +14,7 @@ import { useNavigate } from "react-router";
 import { Sun, Moon } from "lucide-react";
 import { motion } from "motion/react";
 import { MOTION, GLASS_COLORS, GLASS_TYPE, type GlassColorMode } from "../config/project";
-import { ScheduledRidesB } from "../components/rider/scheduled-rides-b";
+import { ScheduledRides } from "../components/rider/scheduled-rides";
 
 export function RiderScheduled() {
   const [colorMode, setColorMode] = useState<GlassColorMode>("dark");
@@ -23,7 +23,7 @@ export function RiderScheduled() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <ScheduledRidesB
+      <ScheduledRides
         colorMode={colorMode}
         onBack={() => navigate("/rider")}
         onTrackRide={() => navigate("/rider/approach")}

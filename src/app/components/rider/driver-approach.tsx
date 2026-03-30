@@ -65,7 +65,7 @@ interface DriverApproachAProps {
   onSafety?: () => void;
 }
 
-export function DriverApproachA({
+export function DriverApproach({
   colorMode = "dark",
   onCancel,
   onRideStart,

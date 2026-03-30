@@ -18,7 +18,7 @@ import {
 import { GLASS_COLORS, GLASS_TYPE, MOTION, type GlassColorMode } from "../../config/project";
 import { BRAND_COLORS } from "../../config/brand";
 import { MapCanvas } from "./map-canvas";
-import { RIDER_USER } from "./rider-home-c";
+import { RIDER_USER } from "./rider-home";
 import { useJetToast, type ToastConfig } from "./jet-toast";
 import { JetConfirm } from "./jet-confirm";
 import { ProfileEditScreen } from "./settings-profile";
@@ -225,8 +225,8 @@ export function RiderAccountScreen({ colorMode, onSavedPlacesTap, onThemeChange 
           whileTap={{ scale: 0.97 }}
           onClick={() => setShowSignOut(true)}
         >
-          <LogOut className="w-4 h-4" style={{ color: "rgba(239,68,68,0.7)" }} />
-          <span style={{ ...RT.bodySmall, color: "rgba(239,68,68,0.7)" }}>Sign out</span>
+          <LogOut className="w-4 h-4" style={{ color: "#EF4444" }} />
+          <span style={{ ...RT.bodySmall, color: "#EF4444" }}>Sign out</span>
         </motion.button>
       </div>
 

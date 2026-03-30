@@ -122,7 +122,7 @@ function OtpCard({ digits, label, sublabel }: {
       border: "1px solid rgba(255,255,255,0.06)",
     }}>
       <span className="block mb-3" style={{
-        ...montserrat(600, "10px", "rgba(255,255,255,0.3)"),
+        ...montserrat(600, "10px", "#7D7D7D"),
         letterSpacing: "0.04em",
       }}>
         {label}
@@ -148,7 +148,7 @@ function OtpCard({ digits, label, sublabel }: {
         ))}
       </div>
 
-      <p className="text-center" style={manrope(400, "11px", "rgba(255,255,255,0.4)", { lineHeight: "1.5" })}>
+      <p className="text-center" style={manrope(400, "11px", "#7D7D7D", { lineHeight: "1.5" })}>
         {sublabel}
       </p>
     </div>
@@ -164,8 +164,8 @@ function OtpHidden({ message }: { message: string }) {
       border: "1px solid rgba(255,255,255,0.04)",
     }}>
       <div className="flex items-center justify-center gap-2 py-4">
-        <Shield size={14} style={{ color: "rgba(255,255,255,0.2)" }} />
-        <span style={manrope(400, "12px", "rgba(255,255,255,0.3)", { lineHeight: "1.5" })}>
+        <Shield size={14} style={{ color: "#5D5D5D" }} />
+        <span style={manrope(400, "12px", "#7D7D7D", { lineHeight: "1.5" })}>
           {message}
         </span>
       </div>
@@ -192,7 +192,7 @@ function ReassigningCard() {
           <span className="block mb-1" style={montserrat(600, "14px", "#fff")}>
             Finding a new driver
           </span>
-          <span style={manrope(400, "12px", "rgba(255,255,255,0.5)", { lineHeight: "1.5" })}>
+          <span style={manrope(400, "12px", "#808080", { lineHeight: "1.5" })}>
             Your previous driver had to cancel. We're matching you with another driver nearby — this usually takes less than 2 minutes.
           </span>
         </div>
@@ -220,12 +220,12 @@ function ExpiredView() {
         <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4" style={{
           background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)",
         }}>
-          <Clock size={24} style={{ color: "rgba(255,255,255,0.3)" }} />
+          <Clock size={24} style={{ color: "#7D7D7D" }} />
         </div>
         <h1 style={montserrat(600, "18px", "#fff", { marginBottom: "8px" })}>
           This trip has ended
         </h1>
-        <p style={manrope(400, "13px", "rgba(255,255,255,0.4)", { lineHeight: "1.5" })}>
+        <p style={manrope(400, "13px", "#7D7D7D", { lineHeight: "1.5" })}>
           This tracking link has expired for your security. If you need help with this trip, please contact the hotel.
         </p>
         <div className="mt-6">
@@ -256,7 +256,7 @@ function TripReceipt() {
     }}>
       <div className="flex items-center gap-2 mb-3">
         <Check size={14} style={{ color: GREEN }} />
-        <span style={montserrat(600, "10px", "rgba(255,255,255,0.3)", { letterSpacing: "0.04em" })}>
+        <span style={montserrat(600, "10px", "#7D7D7D", { letterSpacing: "0.04em" })}>
           TRIP SUMMARY
         </span>
       </div>
@@ -363,8 +363,8 @@ export function GuestTracking() {
             <span style={montserrat(600, "14px", "#fff")}>JET</span>
           </div>
           <div className="flex items-center gap-1">
-            <Shield size={10} style={{ color: "rgba(255,255,255,0.3)" }} />
-            <span style={manrope(400, "9px", "rgba(255,255,255,0.3)")}>
+            <Shield size={10} style={{ color: "#7D7D7D" }} />
+            <span style={manrope(400, "9px", "#7D7D7D")}>
               Secure tracking
             </span>
           </div>
@@ -388,7 +388,7 @@ export function GuestTracking() {
         <div className="flex items-center justify-between mb-6">
           {PHASES.map((p, i) => (
             <span key={p.id} style={manrope(400, "8px",
-              i <= phaseIdx ? (phase === "reassigning" ? AMBER : GREEN) : "rgba(255,255,255,0.2)"
+              i <= phaseIdx ? (phase === "reassigning" ? AMBER : GREEN) : "#5D5D5D"
             )}>
               {p.short}
             </span>
@@ -412,8 +412,8 @@ export function GuestTracking() {
                 className="flex items-center justify-center gap-2 py-3 rounded-xl mb-4 w-full"
                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
               >
-                <Building2 size={14} style={{ color: "rgba(255,255,255,0.5)" }} />
-                <span style={manrope(500, "13px", "rgba(255,255,255,0.5)")}>
+                <Building2 size={14} style={{ color: "#808080" }} />
+                <span style={manrope(500, "13px", "#808080")}>
                   Call {TRIP.hotel.name}
                 </span>
               </a>
@@ -442,15 +442,15 @@ export function GuestTracking() {
                     animate={{ opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                  <span style={manrope(400, "12px", "rgba(255,255,255,0.5)", { lineHeight: "1.5" })}>
+                  <span style={manrope(400, "12px", "#808080", { lineHeight: "1.5" })}>
                     Live tracking active
                   </span>
                 </div>
               )}
               {destinationEta && (
                 <div className="flex items-center gap-1.5 mt-1.5">
-                  <MapPin size={11} style={{ color: "rgba(255,255,255,0.3)" }} />
-                  <span style={manrope(400, "11px", "rgba(255,255,255,0.4)", { lineHeight: "1.5" })}>
+                  <MapPin size={11} style={{ color: "#7D7D7D" }} />
+                  <span style={manrope(400, "11px", "#7D7D7D", { lineHeight: "1.5" })}>
                     {destinationEta}
                   </span>
                 </div>
@@ -476,7 +476,7 @@ export function GuestTracking() {
                   </span>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <Star size={11} style={{ color: GREEN, fill: GREEN }} />
-                    <span style={manrope(400, "11px", "rgba(255,255,255,0.5)", { lineHeight: "1.5" })}>
+                    <span style={manrope(400, "11px", "#808080", { lineHeight: "1.5" })}>
                       {TRIP.driver.rating} · {TRIP.driver.totalRides.toLocaleString()} rides
                     </span>
                   </div>
@@ -485,7 +485,7 @@ export function GuestTracking() {
                   <span className="block" style={montserrat(600, "20px", GREEN)}>
                     {etaText}
                   </span>
-                  <span style={manrope(400, "10px", "rgba(255,255,255,0.3)", { lineHeight: "1.5" })}>
+                  <span style={manrope(400, "10px", "#7D7D7D", { lineHeight: "1.5" })}>
                     {phase === "arrived" ? "Waiting" : phase === "in_trip" ? "To destination" : "ETA"}
                   </span>
                 </div>
@@ -502,7 +502,7 @@ export function GuestTracking() {
                   <span className="block" style={manrope(500, "12px", "#fff")}>
                     {TRIP.driver.vehicle}
                   </span>
-                  <span style={manrope(400, "11px", "rgba(255,255,255,0.4)", { lineHeight: "1.5" })}>
+                  <span style={manrope(400, "11px", "#7D7D7D", { lineHeight: "1.5" })}>
                     {TRIP.driver.plate}
                   </span>
                 </div>
@@ -531,8 +531,8 @@ export function GuestTracking() {
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl cursor-pointer"
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
                 >
-                  <Building2 size={14} style={{ color: "rgba(255,255,255,0.5)" }} />
-                  <span style={manrope(500, "12px", "rgba(255,255,255,0.5)")}>Hotel</span>
+                  <Building2 size={14} style={{ color: "#808080" }} />
+                  <span style={manrope(500, "12px", "#808080")}>Hotel</span>
                 </a>
               </div>
             </div>
@@ -588,7 +588,7 @@ export function GuestTracking() {
               border: "1px solid rgba(255,255,255,0.04)",
             }}>
               <span className="block mb-3" style={{
-                ...montserrat(600, "10px", "rgba(255,255,255,0.3)"),
+                ...montserrat(600, "10px", "#7D7D7D"),
                 letterSpacing: "0.04em",
               }}>
                 TRIP DETAILS
@@ -598,14 +598,14 @@ export function GuestTracking() {
                 <div className="flex flex-col items-center gap-0.5 mt-1.5">
                   <div className="w-2 h-2 rounded-full" style={{ background: GREEN }} />
                   <div className="w-px h-5" style={{ background: "rgba(255,255,255,0.06)" }} />
-                  <MapPin size={10} style={{ color: "rgba(255,255,255,0.3)" }} />
+                  <MapPin size={10} style={{ color: "#7D7D7D" }} />
                 </div>
                 <div className="space-y-3">
                   <div>
                     <span className="block" style={manrope(500, "12px", "#fff")}>
                       {TRIP.route.pickup}
                     </span>
-                    <span style={manrope(400, "10px", "rgba(255,255,255,0.3)", { lineHeight: "1.5" })}>
+                    <span style={manrope(400, "10px", "#7D7D7D", { lineHeight: "1.5" })}>
                       Pickup
                     </span>
                   </div>
@@ -613,7 +613,7 @@ export function GuestTracking() {
                     <span className="block" style={manrope(500, "12px", "#fff")}>
                       {TRIP.route.destination}
                     </span>
-                    <span style={manrope(400, "10px", "rgba(255,255,255,0.3)", { lineHeight: "1.5" })}>
+                    <span style={manrope(400, "10px", "#7D7D7D", { lineHeight: "1.5" })}>
                       Destination
                     </span>
                   </div>
@@ -624,12 +624,12 @@ export function GuestTracking() {
             {/* Footer */}
             <div className="text-center">
               <div className="flex items-center justify-center gap-1.5 mb-1">
-                <Shield size={10} style={{ color: "rgba(255,255,255,0.15)" }} />
-                <span style={manrope(400, "10px", "rgba(255,255,255,0.15)")}>
+                <Shield size={10} style={{ color: "#5D5D5D" }} />
+                <span style={manrope(400, "10px", "#5D5D5D")}>
                   This tracking link expires {TRACKING_LINK.expiryMinutesPostTrip} min after your trip
                 </span>
               </div>
-              <span style={montserrat(600, "10px", "rgba(255,255,255,0.1)")}>
+              <span style={montserrat(600, "10px", "#5D5D5D")}>
                 Powered by JET
               </span>
             </div>

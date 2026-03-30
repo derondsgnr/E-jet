@@ -1,23 +1,14 @@
 /**
- * JET ADMIN — RIDES SURFACE (3 Variations)
+ * JET ADMIN — RIDES SURFACE
  *
  * Trip management across all booking sources.
  * Operational view for monitoring live rides, investigating completed trips,
  * and auditing fare calculations.
  *
- *   A "Operations Table" — Stripe/Linear master data table.
- *     Full-width table, status tabs, row → detail drawer.
- *     Inspiration: Stripe payments, Linear issues, Vercel deployments
- *
- *   B "Split Monitor" — Map + list dual-pane.
- *     Left map shows live rides, right list scrolls. Click syncs both.
- *     Inspiration: Uber city ops, Google Maps logistics, Mapbox Studio
- *
- *   C "Feed + Drill" — Temporal activity feed with progressive disclosure.
- *     Grouped by time, cards expand inline, sticky live stats.
- *     Inspiration: Vercel deployment log, GitHub activity, Datadog stream
- *
- * Design Lab toggle switches A/B/C in real time.
+ * Three view modes (user-selectable):
+ *   A "Table"   — Full-width data table, status tabs, row → detail drawer.
+ *   B "Map"     — Map + list dual-pane. Click syncs both.
+ *   C "Feed"    — Temporal activity feed with progressive disclosure.
  */
 
 import { useState, useMemo } from "react";
@@ -1159,7 +1150,7 @@ function VariationC({ onSelectTrip, selectedTrip }: { onSelectTrip: (t: TripReco
 
 
 /* ══════════════��════════════════════════════════════════════════════════════
-   MAIN EXPORT — Design Lab wrapper
+   MAIN EXPORT — Rides page with view mode selector
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export type RidesVariation = "A" | "B" | "C";

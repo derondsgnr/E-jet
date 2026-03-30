@@ -7,10 +7,10 @@ import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Car, Mail, Phone, CreditCard, ChevronRight } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
 import { AdminModal, ModalHeader, ModalFooter, SurfaceButton } from "../components/admin/ui/surfaces";
 
-function FleetProfileInner() {
+export function AdminFleetProfile() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
   const [searchParams] = useSearchParams();
@@ -28,7 +28,7 @@ function FleetProfileInner() {
           style={{ borderBottom: `1px solid ${t.borderSubtle}` }}
         >
           <button
-            onClick={() => navigate("/fleet-empty")}
+            onClick={() => navigate("/admin/fleet/empty")}
             className="p-1.5 rounded-lg hover:bg-opacity-80"
             style={{ background: t.surfaceHover }}
           >
@@ -417,10 +417,3 @@ function VehicleRow({
   );
 }
 
-export function AdminFleetProfile() {
-  return (
-    <AdminThemeProvider>
-      <FleetProfileInner />
-    </AdminThemeProvider>
-  );
-}

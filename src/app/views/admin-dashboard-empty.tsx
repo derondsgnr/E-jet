@@ -11,12 +11,12 @@ import {
   Activity, Users, DollarSign, TrendingUp, CheckCircle2,
   Circle, ArrowRight, Zap, Building2, Car, ChevronRight
 } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
 import { KPICard } from "../components/admin/ui/primitives";
 
 type SetupState = "A" | "B" | "C";
 
-function DashboardEmptyInner() {
+export function AdminDashboardEmpty() {
   const navigate = useNavigate();
   const { t, theme } = useAdminTheme();
   const [searchParams] = useSearchParams();
@@ -36,7 +36,7 @@ function DashboardEmptyInner() {
       completed: state === "B" || state === "C",
       active: state === "A",
       action: state === "A" ? "Go" : undefined,
-      route: "/settings-pricing",
+      route: "/admin/settings/pricing",
     },
     {
       id: "drivers",
@@ -45,7 +45,7 @@ function DashboardEmptyInner() {
       completed: state === "C",
       active: state === "B",
       action: state === "B" ? "Review" : undefined,
-      route: "/drivers-verification",
+      route: "/admin/drivers/verification",
     },
     {
       id: "hotels",
@@ -54,7 +54,7 @@ function DashboardEmptyInner() {
       completed: false,
       optional: true,
       action: "Add",
-      route: "/hotels-empty",
+      route: "/admin/hotels/empty",
     },
     {
       id: "fleet",
@@ -63,7 +63,7 @@ function DashboardEmptyInner() {
       completed: false,
       optional: true,
       action: "Add",
-      route: "/fleet-empty",
+      route: "/admin/fleet/empty",
     },
   ];
 
@@ -371,13 +371,5 @@ function DashboardEmptyInner() {
         </div>
       </div>
     </div>
-  );
-}
-
-export function AdminDashboardEmpty() {
-  return (
-    <AdminThemeProvider>
-      <DashboardEmptyInner />
-    </AdminThemeProvider>
   );
 }

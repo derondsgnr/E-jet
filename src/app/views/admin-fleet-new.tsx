@@ -7,7 +7,7 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Info } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
 import { AdminModal, ModalHeader, ModalFooter, SurfaceButton } from "../components/admin/ui/surfaces";
 
 interface FormData {
@@ -38,7 +38,7 @@ const INITIAL_FORM: FormData = {
     payoutSchedule: "weekly",
 };
 
-function FleetNewInner() {
+export function AdminFleetNew() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
@@ -56,7 +56,7 @@ function FleetNewInner() {
     if (isDirty) {
       setShowDiscardModal(true);
     } else {
-      navigate("/fleet-empty");
+      navigate("/admin/fleet/empty");
     }
   };
 
@@ -64,7 +64,7 @@ function FleetNewInner() {
     setFormData(INITIAL_FORM);
     setErrors({});
     setShowDiscardModal(false);
-    navigate("/fleet-empty");
+    navigate("/admin/fleet/empty");
   };
 
   const hasRequiredFields =
@@ -97,7 +97,7 @@ function FleetNewInner() {
   };
 
   const confirmCreate = () => {
-    navigate("/fleet-profile?new=true");
+    navigate("/admin/fleet/profile?new=true");
   };
 
   return (
@@ -346,7 +346,7 @@ function FleetNewInner() {
                   border: `1px solid ${t.borderSubtle}`,
                   minHeight: 44,
                 }}
-                onClick={() => navigate("/fleet-empty")}
+                onClick={() => navigate("/admin/fleet/empty")}
               >
                 <span
                   style={{
@@ -507,10 +507,3 @@ function FormField({
   );
 }
 
-export function AdminFleetNew() {
-  return (
-    <AdminThemeProvider>
-      <FleetNewInner />
-    </AdminThemeProvider>
-  );
-}

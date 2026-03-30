@@ -6,9 +6,9 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY } from "../config/admin-theme";
 
-function WelcomeInner() {
+export function AdminOnboardingWelcome() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
 
@@ -95,7 +95,7 @@ function WelcomeInner() {
             border: `1px solid ${BRAND.green}`,
             minHeight: 44,
           }}
-          onClick={() => navigate("/onboarding-zones")}
+          onClick={() => navigate("/admin/onboarding/zones")}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -126,13 +126,5 @@ function WelcomeInner() {
         </span>
       </div>
     </div>
-  );
-}
-
-export function AdminOnboardingWelcome() {
-  return (
-    <AdminThemeProvider>
-      <WelcomeInner />
-    </AdminThemeProvider>
   );
 }

@@ -6,9 +6,9 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { Car, ArrowRight } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY } from "../config/admin-theme";
 
-function FleetEmptyInner() {
+export function AdminFleetEmpty() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
 
@@ -79,7 +79,7 @@ function FleetEmptyInner() {
               border: `1px solid ${BRAND.green}`,
               minHeight: 44,
             }}
-            onClick={() => navigate("/fleet-new")}
+            onClick={() => navigate("/admin/fleet/new")}
           >
             <span
               style={{
@@ -132,13 +132,5 @@ function FleetEmptyInner() {
         </motion.div>
       </div>
     </div>
-  );
-}
-
-export function AdminFleetEmpty() {
-  return (
-    <AdminThemeProvider>
-      <FleetEmptyInner />
-    </AdminThemeProvider>
   );
 }

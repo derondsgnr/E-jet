@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Star, ChevronDown, Info } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY, STATUS } from "../config/admin-theme";
 import { AdminModal, ModalHeader, ModalFooter, SurfaceButton } from "../components/admin/ui/surfaces";
 
 interface FormData {
@@ -25,7 +25,7 @@ interface FormData {
   apiAccess: boolean;
 }
 
-function HotelsNewInner() {
+export function AdminHotelsNew() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
   const [formData, setFormData] = useState<FormData>({
@@ -70,7 +70,7 @@ function HotelsNewInner() {
   };
 
   const confirmCreate = () => {
-    navigate("/hotels-profile?new=true");
+    navigate("/admin/hotels/profile?new=true");
   };
 
   return (
@@ -82,7 +82,7 @@ function HotelsNewInner() {
           style={{ borderBottom: `1px solid ${t.borderSubtle}` }}
         >
           <button
-            onClick={() => navigate("/hotels-empty")}
+            onClick={() => navigate("/admin/hotels/empty")}
             className="p-1.5 rounded-lg hover:bg-opacity-80"
             style={{ background: t.surfaceHover }}
           >
@@ -326,7 +326,7 @@ function HotelsNewInner() {
                   border: `1px solid ${t.borderSubtle}`,
                   minHeight: 44,
                 }}
-                onClick={() => navigate("/hotels-empty")}
+                onClick={() => navigate("/admin/hotels/empty")}
               >
                 <span
                   style={{
@@ -489,10 +489,3 @@ function ToggleRow({ label, value, onChange }: { label: string; value: boolean; 
   );
 }
 
-export function AdminHotelsNew() {
-  return (
-    <AdminThemeProvider>
-      <HotelsNewInner />
-    </AdminThemeProvider>
-  );
-}

@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { Plus, ArrowLeft, Info } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY } from "../config/admin-theme";
 import { AdminModal, ModalHeader, ModalFooter, SurfaceButton } from "../components/admin/ui/surfaces";
 
 interface ZoneData {
@@ -39,7 +39,7 @@ const ZONES: ZoneData[] = [
   { id: "3", name: "Victoria Island" },
 ];
 
-function SettingsPricingInner() {
+export function AdminSettingsPricing() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
   const [selectedZone, setSelectedZone] = useState<string>(ZONES[0].id);
@@ -88,7 +88,7 @@ function SettingsPricingInner() {
             style={{ borderBottom: `1px solid ${t.borderSubtle}` }}
           >
             <button
-              onClick={() => navigate("/dashboard-empty?state=B")}
+              onClick={() => navigate("/admin/dashboard-empty?state=B")}
               className="p-1.5 rounded-lg hover:bg-opacity-80"
               style={{ background: t.surfaceHover }}
             >
@@ -408,10 +408,3 @@ function PricingField({
   );
 }
 
-export function AdminSettingsPricing() {
-  return (
-    <AdminThemeProvider>
-      <SettingsPricingInner />
-    </AdminThemeProvider>
-  );
-}

@@ -60,7 +60,7 @@ interface ScheduledRidesBProps {
   onTrackRide?: (rideId: string) => void;
 }
 
-export function ScheduledRidesB({
+export function ScheduledRides({
   colorMode,
   onBack,
   onTrackRide,

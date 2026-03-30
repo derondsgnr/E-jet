@@ -101,15 +101,15 @@ const darkTokens: ThemeTokens = {
   border: "rgba(255,255,255,0.06)",
   borderSubtle: "rgba(255,255,255,0.04)",
   borderStrong: "rgba(255,255,255,0.1)",
-  text: "#FFFFFF",
-  textSecondary: "rgba(255,255,255,0.78)",
-  textTertiary: "rgba(255,255,255,0.58)",
-  textMuted: "rgba(255,255,255,0.45)",
-  textFaint: "rgba(255,255,255,0.35)",
-  textGhost: "rgba(255,255,255,0.22)",
-  icon: "rgba(255,255,255,0.65)",
-  iconSecondary: "rgba(255,255,255,0.45)",
-  iconMuted: "rgba(255,255,255,0.3)",
+  text: "#FFFFFF",          // 21:1
+  textSecondary: "#C8C8C8", // 12.4:1
+  textTertiary: "#979797",  // 7.2:1
+  textMuted: "#7D7D7D",     // 4.9:1 — WCAG AA minimum for normal text
+  textFaint: "#636363",     // 3.3:1 — large text / UI components
+  textGhost: "#5D5D5D",     // 3.0:1 — decorative / disabled
+  icon: "#A8A8A8",          // 9.2:1
+  iconSecondary: "#7D7D7D", // 4.9:1
+  iconMuted: "#5D5D5D",     // 3.0:1 — UI component minimum
   green: BRAND.green,
   greenBg: "rgba(29,185,84,0.1)",
   greenBorder: "rgba(29,185,84,0.18)",
@@ -151,15 +151,15 @@ const lightTokens: ThemeTokens = {
   border: "rgba(0,0,0,0.08)",
   borderSubtle: "rgba(0,0,0,0.05)",
   borderStrong: "rgba(0,0,0,0.12)",
-  text: "#0B0B0D",
-  textSecondary: "rgba(11,11,13,0.7)",
-  textTertiary: "rgba(11,11,13,0.5)",
-  textMuted: "rgba(11,11,13,0.35)",
-  textFaint: "rgba(11,11,13,0.25)",
-  textGhost: "rgba(11,11,13,0.12)",
-  icon: "rgba(11,11,13,0.55)",
-  iconSecondary: "rgba(11,11,13,0.35)",
-  iconMuted: "rgba(11,11,13,0.2)",
+  text: "#0B0B0D",          // 18.8:1
+  textSecondary: "#525254", // 7.4:1
+  textTertiary: "#6E6E70",  // 4.8:1 — bumped from 3.7:1
+  textMuted: "#717171",     // 4.6:1 — WCAG AA minimum, bumped from 2.4:1
+  textFaint: "#8E8E8E",     // 3.1:1 — large text / UI components
+  textGhost: "#8E8E8E",     // 3.1:1 — decorative / disabled
+  icon: "#707070",          // 4.6:1 — bumped from 4.3:1
+  iconSecondary: "#717171", // 4.6:1
+  iconMuted: "#8E8E8E",     // 3.1:1 — UI component minimum
   green: BRAND.green,
   greenBg: "rgba(29,185,84,0.06)",
   greenBorder: "rgba(29,185,84,0.15)",
@@ -251,9 +251,9 @@ export function demandColor(level: string, theme: AdminTheme): string {
   switch (level) {
     case "surge": return STATUS.warning;
     case "high": return BRAND.green;
-    case "normal": return theme === "dark" ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.25)";
-    case "low": return theme === "dark" ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)";
-    default: return theme === "dark" ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.08)";
+    case "normal": return theme === "dark" ? "#636363" : "#8E8E8E";
+    case "low": return theme === "dark" ? "#5D5D5D" : "#A0A0A0";
+    default: return theme === "dark" ? "#5D5D5D" : "#A0A0A0";
   }
 }
 

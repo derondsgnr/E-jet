@@ -24,7 +24,7 @@ import { AdminThemeProvider, useAdminTheme, BRAND, TY, STATUS } from "../config/
 import { MOCK_FLEET_OWNER, MOCK_NOTIFICATIONS } from "../config/fleet-mock-data";
 import { StatusDot } from "../components/fleet/driver-card";
 import { NotificationPanel } from "../components/fleet/notification-panel";
-import { VariationE } from "./fleet-variation-e";
+import { FleetDashboard } from "./fleet-dashboard";
 import { FleetOnboarding } from "./fleet-onboarding";
 import { FleetEmpty } from "./fleet-empty";
 import { FleetDrivers } from "./fleet-drivers";
@@ -691,66 +691,6 @@ function FleetTopBar() {
 }
 
 
-// ─── Demo State Toggle ──────────────────────────────────────────────────────
-
-function JourneyToggle() {
-  const { journeyState, setJourneyState } = useFleetContext();
-  const { t, theme } = useAdminTheme();
-  const isDark = theme === "dark";
-
-  const states: { id: FleetJourneyState; label: string }[] = [
-    { id: "onboarding", label: "Onboarding" },
-    { id: "empty", label: "Empty" },
-    { id: "active", label: "Active" },
-  ];
-
-  return (
-    <div
-      className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-0.5 p-1 rounded-2xl"
-      style={{
-        background: isDark ? "rgba(12,12,14,0.9)" : "rgba(255,255,255,0.9)",
-        border: `1px solid ${t.borderStrong}`,
-        backdropFilter: "blur(20px)",
-        boxShadow: isDark ? "0 8px 40px rgba(0,0,0,0.5)" : "0 8px 40px rgba(0,0,0,0.1)",
-      }}
-    >
-      <div className="px-2.5 flex items-center gap-1.5">
-        <StatusDot color={STATUS.warning} size={6} pulse />
-        <span style={{
-          fontFamily: "'Montserrat', sans-serif", fontWeight: 600,
-          fontSize: "8px", letterSpacing: "0.06em", color: t.textMuted, lineHeight: "1.2",
-        }}>JOURNEY</span>
-      </div>
-      {states.map((s) => {
-        const isActive = journeyState === s.id;
-        return (
-          <button
-            key={s.id}
-            onClick={() => setJourneyState(s.id)}
-            className="px-3 py-1.5 rounded-xl transition-all duration-200 cursor-pointer"
-            style={{
-              background: isActive
-                ? `linear-gradient(135deg, ${BRAND.green}14 0%, ${BRAND.green}06 100%)`
-                : "transparent",
-              border: isActive ? `1px solid ${BRAND.green}18` : "1px solid transparent",
-              minHeight: 28,
-            }}
-          >
-            <span style={{
-              fontFamily: "'Montserrat', sans-serif", fontWeight: isActive ? 600 : 500,
-              fontSize: "10px", letterSpacing: "-0.02em",
-              color: isActive ? BRAND.green : t.textFaint, lineHeight: "1.2",
-            }}>
-              {s.label}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-
 // ─── Atmospheric Background ─────────────────────────────────────────────────
 
 function AtmosphericBg() {
@@ -775,7 +715,15 @@ function AtmosphericBg() {
 
 function FleetShellInner() {
   const { t } = useAdminTheme();
-  const [journeyState, setJourneyState] = useState<FleetJourneyState>("active");
+  // Derive initial journey state from fleet data
+  const deriveFleetJourneyState = (): FleetJourneyState => {
+    // TODO: replace with real fleet data checks
+    // if (!fleet.hasCompletedOnboarding) return "onboarding";
+    // if (fleet.drivers.length === 0 && fleet.vehicles.length === 0) return "empty";
+    return "active";
+  };
+
+  const [journeyState, setJourneyState] = useState<FleetJourneyState>(deriveFleetJourneyState);
   const [activeNav, setActiveNav] = useState<FleetNavId>("dashboard");
   const [deepLink, setDeepLink] = useState<FleetDeepLink | null>(null);
   const [activeFleetId, setActiveFleetId] = useState("lagos");
@@ -811,7 +759,6 @@ function FleetShellInner() {
           <div className="relative h-full" style={{ zIndex: 1 }}>
             <FleetOnboarding onComplete={() => setJourneyState("empty")} />
           </div>
-          <JourneyToggle />
         </div>
       </FleetContext.Provider>
     );
@@ -841,7 +788,7 @@ function FleetShellInner() {
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {journeyState === "empty" ? <FleetEmpty /> : <VariationE />}
+                    {journeyState === "empty" ? <FleetEmpty /> : <FleetDashboard />}
                   </motion.div>
                 )}
                 {activeNav === "drivers" && (
@@ -872,7 +819,6 @@ function FleetShellInner() {
           </div>
         </div>
 
-        <JourneyToggle />
       </div>
     </FleetContext.Provider>
   );

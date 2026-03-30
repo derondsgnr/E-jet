@@ -381,46 +381,6 @@ function BottomTabs() {
 }
 
 
-// ── Journey State Toggle (Dev) ────────────────────────────────────────────
-
-function JourneyToggle() {
-  const { journeyState, setJourneyState } = useHotelContext();
-  const { t, theme } = useAdminTheme();
-  const isDark = theme === "dark";
-
-  const states: HotelJourneyState[] = ["onboarding", "empty", "active"];
-  return (
-    <div className="fixed bottom-20 md:bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 px-2 py-1.5 rounded-xl"
-      style={{
-        background: isDark ? "rgba(18,18,20,0.9)" : "rgba(255,255,255,0.9)",
-        border: `1px solid ${t.borderSubtle}`,
-        backdropFilter: "blur(12px)",
-        boxShadow: isDark ? "0 4px 16px rgba(0,0,0,0.4)" : "0 4px 16px rgba(0,0,0,0.08)",
-      }}
-    >
-      {states.map(s => (
-        <button
-          key={s}
-          onClick={() => setJourneyState(s)}
-          className="px-2.5 py-1 rounded-lg cursor-pointer"
-          style={{
-            background: journeyState === s ? (isDark ? `${BRAND.green}12` : `${BRAND.green}08`) : "transparent",
-          }}
-        >
-          <span style={{
-            ...TY.body, fontSize: "9px",
-            color: journeyState === s ? BRAND.green : t.textFaint,
-            lineHeight: "1.4", letterSpacing: "-0.02em",
-          }}>
-            {s.charAt(0).toUpperCase() + s.slice(1)}
-          </span>
-        </button>
-      ))}
-    </div>
-  );
-}
-
-
 // ── Content Router ────────────────────────────────────────────────────────
 
 function HotelContent() {
@@ -451,7 +411,15 @@ function HotelContent() {
 
 function HotelShellInner() {
   const { t } = useAdminTheme();
-  const [journeyState, setJourneyState] = useState<HotelJourneyState>("active");
+  // Derive initial journey state from hotel data
+  const deriveHotelJourneyState = (): HotelJourneyState => {
+    // TODO: replace with real hotel data checks
+    // if (!hotel.hasCompletedOnboarding) return "onboarding";
+    // if (hotel.rides.length === 0) return "empty";
+    return "active";
+  };
+
+  const [journeyState, setJourneyState] = useState<HotelJourneyState>(deriveHotelJourneyState);
   const [activeNav, setActiveNav] = useState<HotelNavId>("dashboard");
 
   const navigateTo = useCallback((nav: HotelNavId) => { setActiveNav(nav); }, []);
@@ -464,7 +432,6 @@ function HotelShellInner() {
           <div className="relative h-full" style={{ zIndex: 1 }}>
             <HotelOnboarding onComplete={() => setJourneyState("empty")} />
           </div>
-          <JourneyToggle />
         </div>
       </HotelContext.Provider>
     );
@@ -484,7 +451,6 @@ function HotelShellInner() {
           </div>
           <BottomTabs />
         </div>
-        <JourneyToggle />
       </div>
     </HotelContext.Provider>
   );

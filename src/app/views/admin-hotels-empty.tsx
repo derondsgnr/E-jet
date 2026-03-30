@@ -6,9 +6,9 @@
 import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { Building2, ArrowRight } from "lucide-react";
-import { AdminThemeProvider, useAdminTheme, BRAND, TY } from "../config/admin-theme";
+import { useAdminTheme, BRAND, TY } from "../config/admin-theme";
 
-function HotelsEmptyInner() {
+export function AdminHotelsEmpty() {
   const navigate = useNavigate();
   const { t } = useAdminTheme();
 
@@ -79,7 +79,7 @@ function HotelsEmptyInner() {
               border: `1px solid ${BRAND.green}`,
               minHeight: 44,
             }}
-            onClick={() => navigate("/hotels-new")}
+            onClick={() => navigate("/admin/hotels/new")}
           >
             <span
               style={{
@@ -131,13 +131,5 @@ function HotelsEmptyInner() {
         </motion.div>
       </div>
     </div>
-  );
-}
-
-export function AdminHotelsEmpty() {
-  return (
-    <AdminThemeProvider>
-      <HotelsEmptyInner />
-    </AdminThemeProvider>
   );
 }

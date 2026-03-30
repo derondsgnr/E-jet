@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 import { Sun, Moon } from "lucide-react";
 import { motion } from "motion/react";
 import { MOTION, GLASS_COLORS, GLASS_TYPE, type GlassColorMode } from "../config/project";
-import { OnboardingC } from "../components/rider/onboarding-c";
+import { RiderOnboardingFlow } from "../components/rider/onboarding";
 
 export function RiderOnboarding() {
   const [colorMode, setColorMode] = useState<GlassColorMode>("dark");
@@ -23,7 +23,7 @@ export function RiderOnboarding() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <OnboardingC colorMode={colorMode} onComplete={handleComplete} />
+      <RiderOnboardingFlow colorMode={colorMode} onComplete={handleComplete} />
 
       {/* Color mode toggle (design review only) */}
       <motion.button

@@ -485,7 +485,7 @@ export function AdminRidersPage() {
             />
             <div className="px-6 py-5 space-y-4">
               <div>
-                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" }}>CREDIT AMOUNT</span>
+                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>CREDIT AMOUNT</span>
                 <div className="flex items-center gap-2 h-11 px-3 rounded-xl" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                   <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 600, fontSize: "14px", color: BRAND.green }}>₦</span>
                   <input
@@ -498,7 +498,7 @@ export function AdminRidersPage() {
                 </div>
               </div>
               <div>
-                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" }}>REASON</span>
+                <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>REASON</span>
                 <select className="w-full h-10 px-3 rounded-xl bg-transparent outline-none" style={{ border: "1px solid rgba(255,255,255,0.08)", fontFamily: "'Manrope', sans-serif", fontSize: "12px", color: "white" }}>
                   <option value="">Select reason…</option>
                   <option value="dispute_resolution">Dispute resolution</option>
@@ -541,7 +541,7 @@ export function AdminRidersPage() {
                     </span>
                   </div>
                   <div>
-                    <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.06em" }}>REASON</span>
+                    <span className="block mb-1.5" style={{ ...TY.label, fontSize: "9px", color: "#7D7D7D", letterSpacing: "0.06em" }}>REASON</span>
                     <textarea
                       value={suspendReason}
                       onChange={e => setSuspendReason(e.target.value)}
@@ -560,7 +560,7 @@ export function AdminRidersPage() {
                     ].map(m => (
                       <div key={m.label} className="rounded-lg p-2.5" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.05)" }}>
                         <span className="block" style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 600, fontSize: "14px", letterSpacing: "-0.03em", color: "white" }}>{m.value}</span>
-                        <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 400, fontSize: "9px", color: "rgba(255,255,255,0.35)" }}>{m.label}</span>
+                        <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 400, fontSize: "9px", color: "#7D7D7D" }}>{m.label}</span>
                       </div>
                     ))}
                   </div>

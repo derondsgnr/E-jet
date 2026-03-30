@@ -74,7 +74,7 @@ import {
   SafetySheet,
   ChatSheet,
 } from "./booking-sheets";
-import { DriverApproachA } from "./driver-approach-a";
+import { DriverApproach } from "./driver-approach";
 
 /* ── Spring presets ── */
 const SPRING_SNAPPY = {
@@ -117,7 +117,7 @@ interface BookingFlowBProps {
   onScheduleForLater?: () => void;
 }
 
-export function BookingFlowB({ colorMode = "dark", onBack, onComplete, onScheduleForLater }: BookingFlowBProps) {
+export function BookingFlow({ colorMode = "dark", onBack, onComplete, onScheduleForLater }: BookingFlowBProps) {
   const c = GLASS_COLORS[colorMode];
   const d = colorMode === "dark";
 
@@ -479,7 +479,7 @@ export function BookingFlowB({ colorMode = "dark", onBack, onComplete, onSchedul
 
   if (isApproachStage) {
     return (
-      <DriverApproachA
+      <DriverApproach
         colorMode={colorMode}
         onCancel={() => {
           setStage("vehicle-select");

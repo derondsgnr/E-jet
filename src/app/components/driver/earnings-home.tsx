@@ -80,7 +80,7 @@ interface Props {
   isNewUser?: boolean;
 }
 
-export function EarningsHomeC({ colorMode, isNewUser = false }: Props) {
+export function EarningsHome({ colorMode, isNewUser = false }: Props) {
   const [isOnline, setIsOnline] = useState(false);
   const c = GLASS_COLORS[colorMode];
   const d = colorMode === "dark";

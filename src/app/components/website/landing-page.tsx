@@ -41,7 +41,7 @@ export function LandingPage({
             fontWeight: 400,
             letterSpacing: "-0.02em",
             lineHeight: "1.5",
-            color: "rgba(255,255,255,0.5)",
+            color: "#808080",
           }}
         >
           Premium e-hailing, redefined.
@@ -73,7 +73,7 @@ export function LandingPage({
               fontWeight: 500,
               letterSpacing: "-0.02em",
               lineHeight: "1.4",
-              color: "rgba(255,255,255,0.7)",
+              color: "#B5B5B5",
             }}
           >
             Drive with us

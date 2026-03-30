@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 import { motion } from "motion/react";
 import { Sun, Moon } from "lucide-react";
 import { MOTION, GLASS_COLORS, GLASS_TYPE, type GlassColorMode } from "../config/project";
-import { DriverApproachA } from "../components/rider/driver-approach-a";
+import { DriverApproach } from "../components/rider/driver-approach";
 
 export function RiderApproach() {
   const [colorMode, setColorMode] = useState<GlassColorMode>("dark");
@@ -17,7 +17,7 @@ export function RiderApproach() {
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <DriverApproachA
+      <DriverApproach
         colorMode={colorMode}
         onCancel={() => navigate("/rider")}
         onRideStart={() => navigate("/rider/trip")}

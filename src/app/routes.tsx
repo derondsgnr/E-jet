@@ -64,12 +64,6 @@ import { AdminCommsPage as AdminComms } from "./views/admin-comms";
 import { AdminAnalyticsPage as AdminAnalytics } from "./views/admin-analytics";
 import { AdminSettingsPage as AdminSettings } from "./views/admin-settings";
 import { AdminRidesView } from "./views/admin-rides";
-import { Briefing } from "./views/briefing";
-import PlatformE2EStatus from "./docs/platform-e2e-status";
-import { CCDesignLab } from "./views/cc-design-lab";
-import { CCv2Exploration } from "./views/cc-v2-exploration";
-import { CCv2WiringPlan } from "./docs/cc-v2-wiring-plan";
-import { AdminCommandCenterV2 } from "./views/admin-v2-dashboard";
 
 /* ── NEW: Admin Onboarding E2E ── */
 import { AdminOnboardingWelcome } from "./views/admin-onboarding-welcome";
@@ -100,8 +94,6 @@ import {
   HotelLoginPage, HotelForgotPasswordPage, HotelResetPasswordPage,
 } from "./views/auth-pages";
 
-import DesignSystem from "./views/design-system";
-
 import DSShell from "./views/ds-shell";
 import DSFoundation from "./views/ds-foundation";
 import DSComponents from "./views/ds-components";
@@ -127,11 +119,6 @@ export const router = createBrowserRouter([
     ],
   },
 
-  /* ── Design System (legacy single-page) ── */
-  {
-    path: "/design-system-legacy",
-    Component: DesignSystem,
-  },
 
   /* ── Demo Launcher ── */
   {
@@ -145,79 +132,7 @@ export const router = createBrowserRouter([
     Component: Website,
   },
 
-  /* ── Briefing (visual analysis) ── */
-  {
-    path: "/briefing",
-    Component: Briefing,
-  },
-  {
-    path: "/briefing/e2e-status",
-    Component: PlatformE2EStatus,
-  },
-  {
-    path: "/briefing/command-center",
-    Component: CCDesignLab,
-  },
-  {
-    path: "/briefing/cc-v2",
-    Component: CCv2Exploration,
-  },
-  {
-    path: "/briefing/cc-v2/plan",
-    Component: CCv2WiringPlan,
-  },
 
-  /* ── Admin Onboarding E2E (standalone — no shell) ── */
-  {
-    path: "/onboarding-welcome",
-    Component: AdminOnboardingWelcome,
-  },
-  {
-    path: "/onboarding-zones",
-    Component: AdminOnboardingZones,
-  },
-  {
-    path: "/dashboard-empty",
-    Component: AdminDashboardEmpty,
-  },
-  {
-    path: "/settings-pricing",
-    Component: AdminSettingsPricing,
-  },
-  {
-    path: "/drivers-verification",
-    Component: AdminDriversVerification,
-  },
-  {
-    path: "/hotels-empty",
-    Component: AdminHotelsEmpty,
-  },
-  {
-    path: "/hotels-new",
-    Component: AdminHotelsNew,
-  },
-  {
-    path: "/hotels-profile",
-    Component: AdminHotelsProfile,
-  },
-  {
-    path: "/fleet-empty",
-    Component: AdminFleetEmpty,
-  },
-  {
-    path: "/fleet-new",
-    Component: AdminFleetNew,
-  },
-  {
-    path: "/fleet-profile",
-    Component: AdminFleetProfile,
-  },
-
-  /* ── Fleet Owner Dashboard (standalone) ── */
-  {
-    path: "/fleet-dashboard",
-    Component: FleetShell,
-  },
 
   /* ── Fleet Owner Shell (with nav + journey states) ── */
   {
@@ -294,7 +209,6 @@ export const router = createBrowserRouter([
     Component: AdminShell,
     children: [
       { index: true, Component: AdminCommandCenter },
-      { path: "v2", Component: AdminCommandCenterV2 },
       { path: "rides", Component: AdminRidesView },
       { path: "disputes", Component: AdminDisputes },
       { path: "support", Component: AdminSupport },
@@ -306,6 +220,18 @@ export const router = createBrowserRouter([
       { path: "analytics", Component: AdminAnalytics },
       { path: "comms", Component: AdminComms },
       { path: "settings", Component: AdminSettings },
+      /* ── Admin Onboarding E2E ── */
+      { path: "onboarding/welcome", Component: AdminOnboardingWelcome },
+      { path: "onboarding/zones", Component: AdminOnboardingZones },
+      { path: "dashboard-empty", Component: AdminDashboardEmpty },
+      { path: "settings/pricing", Component: AdminSettingsPricing },
+      { path: "drivers/verification", Component: AdminDriversVerification },
+      { path: "hotels/empty", Component: AdminHotelsEmpty },
+      { path: "hotels/new", Component: AdminHotelsNew },
+      { path: "hotels/profile", Component: AdminHotelsProfile },
+      { path: "fleet/empty", Component: AdminFleetEmpty },
+      { path: "fleet/new", Component: AdminFleetNew },
+      { path: "fleet/profile", Component: AdminFleetProfile },
     ],
   },
 

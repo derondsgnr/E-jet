@@ -205,7 +205,7 @@ function Card({
 // VARIATION E
 // ═══════════════════════════════════════════════════════════════════════════
 
-export function VariationE() {
+export function FleetDashboard() {
   const { t, theme } = useAdminTheme();
   const isDark = theme === "dark";
   const { navigateTo, activeFleetId, fleets } = useFleetContext();

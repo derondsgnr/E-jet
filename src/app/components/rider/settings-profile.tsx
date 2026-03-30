@@ -11,7 +11,7 @@ import { motion } from "motion/react";
 import { ArrowLeft, Camera, Star, Calendar } from "lucide-react";
 import { GLASS_COLORS, GLASS_TYPE, type GlassColorMode } from "../../config/project";
 import { BRAND_COLORS } from "../../config/brand";
-import { RIDER_USER } from "./rider-home-c";
+import { RIDER_USER } from "./rider-home";
 import type { ToastConfig } from "./jet-toast";
 
 const AVATAR_URL =

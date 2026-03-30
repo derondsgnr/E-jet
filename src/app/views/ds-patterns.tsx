@@ -32,7 +32,7 @@ export default function DSPatterns() {
               <JetLogo variant="wordmark-png" mode="light" height={32} />
               <div className="flex gap-3 mt-2">
                 {["full", "icon", "wordmark-png"].map(v => (
-                  <span key={v} className="px-2 py-0.5 rounded" style={{ ...TY.bodyR, fontSize: "8px", color: "rgba(255,255,255,0.4)", background: "rgba(255,255,255,0.06)" }}>{v}</span>
+                  <span key={v} className="px-2 py-0.5 rounded" style={{ ...TY.bodyR, fontSize: "8px", color: "#979797", background: "rgba(255,255,255,0.06)" }}>{v}</span>
                 ))}
               </div>
             </div>
@@ -44,7 +44,7 @@ export default function DSPatterns() {
               <JetLogo variant="wordmark-png" mode="dark" height={32} />
               <div className="flex gap-3 mt-2">
                 {["full", "icon", "wordmark-png"].map(v => (
-                  <span key={v} className="px-2 py-0.5 rounded" style={{ ...TY.bodyR, fontSize: "8px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.04)" }}>{v}</span>
+                  <span key={v} className="px-2 py-0.5 rounded" style={{ ...TY.bodyR, fontSize: "8px", color: "#6E6E70", background: "rgba(0,0,0,0.04)" }}>{v}</span>
                 ))}
               </div>
             </div>

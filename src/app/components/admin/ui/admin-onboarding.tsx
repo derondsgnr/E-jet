@@ -40,12 +40,19 @@ export function useOnboarding() {
 }
 
 export function OnboardingProvider({ children }: { children: ReactNode }) {
-  // No persistence — resets every page load for e2e demo
-  const [hasOnboarded, setHasOnboarded] = useState(false);
-  const [seenHints, setSeenHints] = useState<Set<string>>(new Set());
+  const [hasOnboarded, setHasOnboarded] = useState(() => {
+    try { return localStorage.getItem("jet-admin-onboarded") === "true"; } catch { return false; }
+  });
+  const [seenHints, setSeenHints] = useState<Set<string>>(() => {
+    try {
+      const stored = localStorage.getItem("jet-admin-hints");
+      return stored ? new Set(JSON.parse(stored)) : new Set();
+    } catch { return new Set(); }
+  });
 
   const completeOnboarding = useCallback(() => {
     setHasOnboarded(true);
+    try { localStorage.setItem("jet-admin-onboarded", "true"); } catch {}
   }, []);
 
   const isHintSeen = useCallback((id: string) => seenHints.has(id), [seenHints]);
@@ -54,6 +61,7 @@ export function OnboardingProvider({ children }: { children: ReactNode }) {
     setSeenHints(prev => {
       const next = new Set(prev);
       next.add(id);
+      try { localStorage.setItem("jet-admin-hints", JSON.stringify([...next])); } catch {}
       return next;
     });
   }, []);

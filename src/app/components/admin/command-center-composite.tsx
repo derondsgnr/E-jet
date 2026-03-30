@@ -52,10 +52,9 @@ import {
 import type { AdminTheme } from "../../config/admin-theme";
 import {
   KPICard, StatusBadge, SegmentedBar, StageRow, StatTile,
-  ActionQueueItem, PriorityIcon, FeedIcon, ThemeToggle,
+  FeedIcon, ThemeToggle,
   DiagnosticCard, SectionLabel, ActionRow, CTAButton,
 } from "./ui/primitives";
-import { CommandCenterOnboarding, type OnboardingVariation } from "./command-center-onboarding";
 import { CCv2Onboarding } from "./cc-v2-onboarding";
 import {
   buildKPIGroups, KPIStrip as V2KPIStrip, DecisionsPanel as V2DecisionsPanel,
@@ -311,11 +310,10 @@ function ZonePinSVG({ zone, cx, cy, col, r, isHov, isSel, entityFilter, theme, t
 /* ═══════════════════════════════════════════════════════════════════════════
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════════════ */
-export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v2" } = {}) {
+export function CommandCenterComposite() {
   const { theme, t } = useAdminTheme();
   const isDark = theme === "dark";
   const navigate = useNavigate();
-  const isV2 = variant === "v2";
 
   // ─── State ──────────────────────────────────────────────────────────────
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
@@ -332,15 +330,14 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
   const [hoveredEntity, setHoveredEntity] = useState<string | null>(null);
   const [selectedEntity, setSelectedEntity] = useState<ZoneEntityPin | null>(null);
   // Platform state: "setup" = onboarding (no data), "active" = full CC
-  const [platformMode, setPlatformMode] = useState<"setup" | "active">(isV2 ? "setup" : "active");
-  const [onboardingVariation, setOnboardingVariation] = useState<OnboardingVariation>("B");
+  const [platformMode, setPlatformMode] = useState<"setup" | "active">("setup");
 
   // ─── V2-specific state ─────────────────────────────────────────────────
   const [v2HighlightedIds, setV2HighlightedIds] = useState<string[]>([]);
   const [v2DrawerItem, setV2DrawerItem] = useState<ActionItem | null>(null);
   const v2PanelRef = React.useRef<HTMLDivElement | null>(null);
   const v2ItemRefs = React.useRef<Record<string, HTMLDivElement | null>>({});
-  const v2KpiGroups = useMemo(() => isV2 ? buildKPIGroups() : [], [isV2]);
+  const v2KpiGroups = useMemo(() => buildKPIGroups(), []);
   const handleV2KPIClick = useCallback((group: KPIGroup) => {
     if (group.relatedActions.length === 0) return;
     const firstId = group.relatedActions[0];
@@ -352,11 +349,10 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
   const handleV2Action = useCallback((item: ActionItem) => setV2DrawerItem(item), []);
   const closeV2Drawer = useCallback(() => setV2DrawerItem(null), []);
   useEffect(() => {
-    if (!isV2) return;
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") closeV2Drawer(); };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [isV2, closeV2Drawer]);
+  }, [closeV2Drawer]);
 
   // ─── Derived ────────────────────────────────────────────────────────────
   const mapLevel: "national" | "state" | "zone" = drilledZone ? "zone" : drilledState ? "state" : "national";
@@ -545,17 +541,7 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
 
   // ─── ONBOARDING STATE ──
   if (platformMode === "setup") {
-    if (isV2) {
-      // FIX 1: Full-screen fixed overlay with real action forms + progressive CC build-up
-      return <CCv2Onboarding onGoActive={() => setPlatformMode("active")} />;
-    }
-    return (
-      <CommandCenterOnboarding
-        variation={onboardingVariation}
-        onVariationChange={setOnboardingVariation}
-        onGoActive={() => setPlatformMode("active")}
-      />
-    );
+    return <CCv2Onboarding onGoActive={() => setPlatformMode("active")} />;
   }
 
   return (
@@ -579,7 +565,6 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
             ) : (
               <h1 style={{ ...TY.sub, fontSize: "14px", color: t.text }}>Command Center</h1>
             )}
-            {isV2 && <span className="px-1.5 py-0.5 rounded-md" style={{ ...TY.cap, fontSize: "9px", color: BRAND.green, background: `${BRAND.green}10` }}>V2</span>}
             {selectedState && (
               <>
                 <ChevronRight size={12} style={{ color: t.textGhost }} />
@@ -618,30 +603,6 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Demo: view setup/empty state */}
-          <button
-            onClick={() => setPlatformMode("setup")}
-            className="h-7 px-3 rounded-lg flex items-center gap-1.5 transition-colors"
-            style={{
-              background: isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)",
-              border: `1px solid ${isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)"}`,
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.05)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)"; }}
-          >
-            <Settings size={11} style={{ color: t.textMuted }} />
-            <span
-              style={{
-                fontFamily: "'Manrope', sans-serif",
-                fontWeight: 500,
-                fontSize: "10px",
-                letterSpacing: "-0.01em",
-                color: t.textMuted,
-              }}
-            >
-              View setup state
-            </span>
-          </button>
           <ThemeToggle />
           <button className="w-8 h-8 rounded-lg flex items-center justify-center transition-colors" style={{ background: t.surfaceHover }}>
             <Search size={14} style={{ color: t.icon }} />
@@ -657,11 +618,11 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
       </motion.div>
 
       {/* ═══ KPI STRIP ═══ */}
-      {isV2 && mapLevel === "national" && !selectedState ? (
+      {mapLevel === "national" && !selectedState ? (
         /* V2: 5-group KPI strip with health indicators at national level */
         <V2KPIStrip groups={v2KpiGroups} onKPIClick={handleV2KPIClick} />
       ) : (
-        /* V1: scope-contextual KPI strip (also used by V2 when drilled) */
+        /* Scope-contextual KPI strip (used when drilled into state/zone) */
         <motion.div
           className="flex items-stretch overflow-x-auto shrink-0 scrollbar-hide"
           style={{ background: t.overlay, borderBottom: `1px solid ${t.border}` }}
@@ -1994,81 +1955,12 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
 
               {/* ════════ DECISION QUEUE (default — national, nothing selected) ════════ */}
               {rightPanelMode === "queue" && (
-                isV2 ? (
-                  /* V2: Split Handle Now / Handle Today with verb-action buttons */
                   <V2DecisionsPanel
                     highlightedIds={v2HighlightedIds}
                     onAction={handleV2Action}
                     panelRef={v2PanelRef}
                     itemRefs={v2ItemRefs}
                   />
-                ) : (
-                  <motion.div key="queue" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                    {/* Operations items */}
-                    {ACTION_QUEUE.filter(a => a.type !== "hotel" && a.type !== "fleet").map((item, i) => {
-                      const route = item.type === "dispute" || item.type === "escalation" ? "/admin/disputes"
-                        : item.type === "verification" ? "/admin/drivers"
-                        : item.type === "payout" ? "/admin/finance"
-                        : "/admin/disputes";
-                      return (
-                        <ActionQueueItem
-                          key={item.id}
-                          priority={item.priority}
-                          title={item.title}
-                          subtitle={item.subtitle}
-                          timestamp={item.timestamp}
-                          meta={item.meta}
-                          delay={0.35 + i * 0.04}
-                          onClick={() => navigate(route)}
-                        />
-                      );
-                    })}
-                    {/* Hotel items */}
-                    {ACTION_QUEUE.filter(a => a.type === "hotel").length > 0 && (
-                      <>
-                        <div className="flex items-center gap-2 px-4 pt-4 pb-1">
-                          <Building2 size={10} style={{ color: STATUS.info }} />
-                          <span style={{ ...TY.label, fontSize: "8px", color: STATUS.info }}>HOTEL PARTNERS</span>
-                          <div className="flex-1 h-px" style={{ background: `${STATUS.info}15` }} />
-                        </div>
-                        {ACTION_QUEUE.filter(a => a.type === "hotel").map((item, i) => (
-                          <ActionQueueItem
-                            key={item.id}
-                            priority={item.priority}
-                            title={item.title}
-                            subtitle={item.subtitle}
-                            timestamp={item.timestamp}
-                            meta={item.meta}
-                            delay={0.55 + i * 0.04}
-                            onClick={() => navigate("/admin/hotels")}
-                          />
-                        ))}
-                      </>
-                    )}
-                    {/* Fleet items */}
-                    {ACTION_QUEUE.filter(a => a.type === "fleet").length > 0 && (
-                      <>
-                        <div className="flex items-center gap-2 px-4 pt-4 pb-1">
-                          <Car size={10} style={{ color: "#F59E0B" }} />
-                          <span style={{ ...TY.label, fontSize: "8px", color: "#F59E0B" }}>FLEET OWNERS</span>
-                          <div className="flex-1 h-px" style={{ background: "#F59E0B15" }} />
-                        </div>
-                        {ACTION_QUEUE.filter(a => a.type === "fleet").map((item, i) => (
-                          <ActionQueueItem
-                            key={item.id}
-                            priority={item.priority}
-                            title={item.title}
-                            subtitle={item.subtitle}
-                            timestamp={item.timestamp}
-                            meta={item.meta}
-                            delay={0.65 + i * 0.04}
-                            onClick={() => navigate("/admin/fleet")}
-                          />
-                        ))}
-                      </>
-                    )}
-                  </motion.div>
-                )
               )}
 
             </AnimatePresence>
@@ -2100,24 +1992,22 @@ export function CommandCenterComposite({ variant = "v1" }: { variant?: "v1" | "v
           </div>
         </motion.div>
 
-        {/* V2 Action Drawer overlay */}
-        {isV2 && (
-          <AnimatePresence>
-            {v2DrawerItem && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute inset-0 z-40"
-                  style={{ background: isDark ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.1)" }}
-                  onClick={closeV2Drawer}
-                />
-                <V2ActionDrawer item={v2DrawerItem} onClose={closeV2Drawer} />
-              </>
-            )}
-          </AnimatePresence>
-        )}
+        {/* Action Drawer overlay */}
+        <AnimatePresence>
+          {v2DrawerItem && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 z-40"
+                style={{ background: isDark ? "rgba(0,0,0,0.3)" : "rgba(0,0,0,0.1)" }}
+                onClick={closeV2Drawer}
+              />
+              <V2ActionDrawer item={v2DrawerItem} onClose={closeV2Drawer} />
+            </>
+          )}
+        </AnimatePresence>
       </div>
 
 
