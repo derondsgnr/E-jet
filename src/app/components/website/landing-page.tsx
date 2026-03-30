@@ -10,6 +10,15 @@ interface LandingPageProps {
 export function LandingPage({
   onGetStarted,
   onDriveWithUs,
+  onFleetOwner,
+  onHotelPartner,
 }: LandingPageProps) {
-  return <LandingPageD onGetStarted={onGetStarted} onDriveWithUs={onDriveWithUs} />;
+  return (
+    <LandingPageD
+      onGetStarted={onGetStarted}
+      onDriveWithUs={onDriveWithUs}
+      onFleetOwner={onFleetOwner}
+      onHotelPartner={onHotelPartner}
+    />
+  );
 }

@@ -132,10 +132,12 @@ function OtpProofCard() {
 interface LandingPageDProps {
   onGetStarted?: () => void;
   onDriveWithUs?: () => void;
+  onHotelPartner?: () => void;
+  onFleetOwner?: () => void;
 }
 
 // ════════════════════════════════════════════════════════════════════════════
-export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps) {
+export function LandingPageD({ onGetStarted, onDriveWithUs, onHotelPartner, onFleetOwner }: LandingPageDProps) {
   const heroRef = useRef(null);
   const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroImgScale = useTransform(heroScroll, [0, 1], [1, 1.08]);
@@ -645,6 +647,7 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
                 icon: Building2,
                 title: "Premium transport for your guests, on demand.",
                 body: "Branded booking, seamless billing, VIP coordination — integrated into how you already work.",
+                onAction: onHotelPartner,
               },
               {
                 img: IMG_FLEET,
@@ -652,6 +655,7 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
                 icon: Car,
                 title: "Real-time vehicle tracking. Revenue analytics. One dashboard.",
                 body: "Built for operators who run at scale. Driver performance, maintenance scheduling, payout management.",
+                onAction: onFleetOwner,
               },
             ].map(card => {
               const Icon = card.icon;
@@ -678,14 +682,14 @@ export function LandingPageD({ onGetStarted, onDriveWithUs }: LandingPageDProps)
                     <div className="p-6 bg-white flex flex-col flex-1">
                       <h3 style={{ ...H, fontSize: "18px", color: "#0B0B0D", marginBottom: 8 }}>{card.title}</h3>
                       <p style={{ ...B, fontSize: "14px", color: "#6E6E70", marginBottom: 16, flex: 1 }}>{card.body}</p>
-                      <a
-                        href={`mailto:${CONTACT_EMAIL}`}
+                      <button
+                        onClick={card.onAction}
                         className="flex items-center gap-1.5 group/link"
-                        style={{ ...BM, fontSize: "13px", color: BRAND_COLORS.green }}
+                        style={{ ...BM, fontSize: "13px", color: BRAND_COLORS.green, background: "none", border: "none", padding: 0, cursor: "pointer" }}
                       >
-                        Talk to us
+                        Learn more
                         <ArrowUpRight size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </Reveal>
