@@ -720,7 +720,7 @@ function FleetShellInner() {
     // TODO: replace with real fleet data checks
     // if (!fleet.hasCompletedOnboarding) return "onboarding";
     // if (fleet.drivers.length === 0 && fleet.vehicles.length === 0) return "empty";
-    return "active";
+    return "onboarding";
   };
 
   const [journeyState, setJourneyState] = useState<FleetJourneyState>(deriveFleetJourneyState);

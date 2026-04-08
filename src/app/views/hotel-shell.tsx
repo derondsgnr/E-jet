@@ -416,7 +416,7 @@ function HotelShellInner() {
     // TODO: replace with real hotel data checks
     // if (!hotel.hasCompletedOnboarding) return "onboarding";
     // if (hotel.rides.length === 0) return "empty";
-    return "active";
+    return "onboarding";
   };
 
   const [journeyState, setJourneyState] = useState<HotelJourneyState>(deriveHotelJourneyState);
